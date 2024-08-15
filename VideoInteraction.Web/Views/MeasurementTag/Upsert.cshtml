@@ -1,0 +1,96 @@
+﻿@model MeasurementTagVM
+
+<div class="card shadow border-0 my-4">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+    <div class="row">
+        <div class="col-12 text-center">
+                <h2 class="text-white py-2"> @(Model.MeasurementTag.Id!=0?"Update":"Create") MeasurementTag</h2>
+        </div>
+    </div>
+    </div>
+    <div class="card-body p-4">
+        <form method="post" class="row" enctype="multipart/form-data">
+            <input asp-for="MeasurementTag.Id" hidden />
+           
+            <div class="row">
+                <div class="col-10">
+                    <div class="border p-3">
+                        @*<div asp-validation-summary="ModelOnly"></div>*@
+                        <div class="form-floating py-2 col-12">
+                            <input asp-for="MeasurementTag.DisplayOrder" class="form-control border-0 shadow" />
+                            <label asp-for="MeasurementTag.DisplayOrder" class="ms-2"></label>
+                            <span asp-validation-for="MeasurementTag.DisplayOrder" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating py-2 col-12">
+                            <input asp-for="MeasurementTag.MeasureTagName" class="form-control border-0 shadow" />
+                            <label asp-for="MeasurementTag.MeasureTagName" class="ms-2"></label>
+                            <span asp-validation-for="MeasurementTag.MeasureTagName" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating py-2 col-12">
+                            <label asp-for="MeasurementTag.TagDescription" class="ms-2 text-muted"></label>
+                            <textarea asp-for="MeasurementTag.TagDescription" class="form-control border-0 shadow"></textarea>
+                        </div>
+                        <div class="form-floating py-2 col-12">
+                            <select asp-for="@Model.MeasurementTag.CameraId" asp-items="@Model.CameraList" class="form-select border-0 shadow">
+                                <option disabled selected>--Select Camera--</option>
+                            </select>
+                            <label asp-for="MeasurementTag.CameraId" class="ms-2"></label>
+                            <span asp-validation-for="MeasurementTag.CameraId" class="text-danger"></span>
+                        </div> 
+                        <div class="form-floating py-2 col-12">
+                            <select asp-for="@Model.MeasurementTag.MeasurementUnitId" asp-items="@Model.MeasurementUnitList" class="form-select border-0 shadow">
+                                <option disabled selected>--Select Measurement Unit--</option>
+                            </select>
+                            <label asp-for="MeasurementTag.MeasurementUnitId" class="ms-2"></label>
+                            <span asp-validation-for="MeasurementTag.MeasurementUnitId" class="text-danger"></span>
+                        </div> 
+                        <div class="form-floating py-2 col-12">
+                            <select asp-for="@Model.MeasurementTag.MeasurementPrefixId" asp-items="@Model.MeasurementPrefixList" class="form-select border-0 shadow">
+                                <option disabled selected>--Select Measurement Prefix--</option>
+                            </select>
+                            <label asp-for="MeasurementTag.MeasurementPrefixId" class="ms-2"></label>
+                            <span asp-validation-for="MeasurementTag.MeasurementPrefixId" class="text-danger"></span>
+                        </div>
+
+                        <div class="row pt-2">
+                            <div class="col-6 col-md-3">
+                                @if (Model.MeasurementTag.Id != 0)
+                                {
+                                    <button type="submit" class="btn btn-primary form-control">Update</button>
+                                }
+                                else
+                                {
+                                    <button type="submit" class="btn btn-primary form-control">Create</button>
+                                }
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <a asp-controller="MeasurementTag" asp-action="Index" class="btn btn-outline-primary border  form-control">
+                                    Back to List
+                                </a>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+           
+        </form>
+    </div>
+</div>
+
+
+
+
+@section Scripts{
+@*     <script>
+        tinymce.init({
+            selector: 'textarea',
+            plugins: 'anchor autolink charmap codesample emoticons  lists   table visualblocks wordcount',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough |  align lineheight | numlist bullist indent outdent',
+        });
+    </script> *@
+    @{
+    <partial name="_ValidationScriptsPartial"/>
+    }
+}

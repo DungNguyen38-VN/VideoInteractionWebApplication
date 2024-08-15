@@ -9,7 +9,11 @@ namespace VideoInteraction.DataAccess.Repository.IRepository
     public interface IUnitOfWork
     {
         ICameraRepository Camera { get; }
+        IWindowRepository Window { get; }
         ICameraControlTagRepository CameraControlTag { get; }
+        IMeasurementUnitRepository MeasurementUnit { get; }
+        IMeasurementPrefixRepository MeasurementPrefix { get; }
+        IMeasurementTagRepository MeasurementTag { get; }
         void Save();
     }
 }

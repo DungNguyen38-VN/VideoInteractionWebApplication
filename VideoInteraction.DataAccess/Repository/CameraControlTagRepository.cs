@@ -27,7 +27,6 @@ namespace VideoInteraction.DataAccess.Repository
                 objFromDb.TagName = obj.TagName;
                 objFromDb.Description = obj.Description;
                 objFromDb.CameraId = obj.CameraId;
-                objFromDb.CreatedTs = obj.CreatedTs;
                 objFromDb.UpdatedTs = DateTime.Now;
             }
         }

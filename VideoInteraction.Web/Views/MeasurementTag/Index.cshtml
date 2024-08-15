@@ -1,4 +1,4 @@
-﻿@model List<CameraControlTag>
+﻿@model List<MeasurementTag>
 
 <div class="card shadow border-0 my-4">
     <div class="card-header bg-secondary bg-gradient ml-0 py-3">
@@ -13,8 +13,8 @@
             <div class="col-6">
             </div>
             <div class="col-6 text-end">
-                <a asp-controller="CameraControlTag" asp-action="Upsert" class="btn btn-primary">
-                    <i class="bi bi-plus-circle"></i>  Create New Camera Tag
+                <a asp-controller="MeasurementTag" asp-action="Upsert" class="btn btn-primary">
+                    <i class="bi bi-plus-circle"></i>  Create New Measurement Tag
                 </a>
             </div>
         </div>
@@ -22,11 +22,14 @@
         <table id="tblData" class="table table-bordered table-striped" style="width:100%">
             <thead>
                 <tr>
+                    <th>Order</th>
                     <th>TagName</th>
                     <th>Description</th>
-                    <th>CreatedTs</th>
+                    @* <th>CreatedTs</th> *@
                     <th>UpdatedTs</th>
                     <th>Camera</th>
+                    <th>Unit</th>
+                    <th>Prefix</th>
                     <th></th>
                 </tr>
             </thead>
@@ -36,5 +39,5 @@
 </div>
 
 @section Scripts{
-    <script src="~/js/CameraControlTag.js"></script>
+    <script src="~/js/MeasurementTag.js"></script>
 }

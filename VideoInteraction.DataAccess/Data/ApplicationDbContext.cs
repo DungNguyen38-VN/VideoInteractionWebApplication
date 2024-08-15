@@ -11,6 +11,10 @@ namespace VideoInteraction.DataAccess.Data
         }
         public DbSet<Camera> Cameras { get; set; }
         public DbSet<CameraControlTag> CameraControlTags { get; set; }
+        public DbSet<MeasurementUnit> MeasurementUnits { get; set; }
+        public DbSet<MeasurementPrefix> measurementPrefixes { get; set; }
+        public DbSet<MeasurementTag> MeasurementTags { get; set; }
+        public DbSet<Window> Windows { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -23,10 +27,10 @@ namespace VideoInteraction.DataAccess.Data
                 new Camera { Id = 3, Name = "Cam03", CameraCode = "code12312003", Description = "", CreatedTs = DateTime.Now }
                 );
             modelBuilder.Entity<CameraControlTag>().HasData(
-                new CameraControlTag { Id = 1, TagName = "TDC_Com.TDC1.Tag1", Description = "tag1",  CreatedTs = DateTime.Now,UpdatedTs= DateTime.Now, CameraId =1 },
-                new CameraControlTag { Id = 2, TagName = "TDC_Com.TDC1.Tag2", Description = "tag2",  CreatedTs = DateTime.Now, UpdatedTs = DateTime.Now, CameraId =2 },
-                new CameraControlTag { Id = 3, TagName = "TDC_Com.TDC1.Tag3", Description = "tag3",  CreatedTs = DateTime.Now, UpdatedTs = DateTime.Now, CameraId =3 },
-                new CameraControlTag { Id = 4, TagName = "TDC_Com.TDC1.Tag4", Description = "tag4",  CreatedTs = DateTime.Now, UpdatedTs = DateTime.Now, CameraId =4 }
+                new CameraControlTag { Id = 1, TagName = "TDC_Com.TDC1.Tag1", Description = "tag1", CreatedTs = DateTime.Now, UpdatedTs = DateTime.Now, CameraId = 1 },
+                new CameraControlTag { Id = 2, TagName = "TDC_Com.TDC1.Tag2", Description = "tag2", CreatedTs = DateTime.Now, UpdatedTs = DateTime.Now, CameraId = 2 },
+                new CameraControlTag { Id = 3, TagName = "TDC_Com.TDC1.Tag3", Description = "tag3", CreatedTs = DateTime.Now, UpdatedTs = DateTime.Now, CameraId = 3 },
+                new CameraControlTag { Id = 4, TagName = "TDC_Com.TDC1.Tag4", Description = "tag4", CreatedTs = DateTime.Now, UpdatedTs = DateTime.Now, CameraId = 4 }
                 );
         }
     }

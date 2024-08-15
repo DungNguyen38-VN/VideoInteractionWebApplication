@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VideoInteraction.DataAccess.Data;
 
@@ -11,9 +12,11 @@ using VideoInteraction.DataAccess.Data;
 namespace VideoInteraction.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240815113024_addWindowToDB")]
+    partial class addWindowToDB
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -56,7 +59,7 @@ namespace VideoInteraction.DataAccess.Migrations
                         {
                             Id = 1,
                             CameraCode = "code12312001",
-                            CreatedTs = new DateTime(2024, 8, 15, 18, 40, 51, 918, DateTimeKind.Local).AddTicks(6938),
+                            CreatedTs = new DateTime(2024, 8, 15, 18, 30, 23, 758, DateTimeKind.Local).AddTicks(7235),
                             Description = "",
                             Name = "Cam01"
                         },
@@ -64,7 +67,7 @@ namespace VideoInteraction.DataAccess.Migrations
                         {
                             Id = 2,
                             CameraCode = "code12312002",
-                            CreatedTs = new DateTime(2024, 8, 15, 18, 40, 51, 918, DateTimeKind.Local).AddTicks(6940),
+                            CreatedTs = new DateTime(2024, 8, 15, 18, 30, 23, 758, DateTimeKind.Local).AddTicks(7236),
                             Description = "",
                             Name = "Cam02"
                         },
@@ -72,7 +75,7 @@ namespace VideoInteraction.DataAccess.Migrations
                         {
                             Id = 3,
                             CameraCode = "code12312003",
-                            CreatedTs = new DateTime(2024, 8, 15, 18, 40, 51, 918, DateTimeKind.Local).AddTicks(6941),
+                            CreatedTs = new DateTime(2024, 8, 15, 18, 30, 23, 758, DateTimeKind.Local).AddTicks(7238),
                             Description = "",
                             Name = "Cam03"
                         });
@@ -115,37 +118,37 @@ namespace VideoInteraction.DataAccess.Migrations
                         {
                             Id = 1,
                             CameraId = 1,
-                            CreatedTs = new DateTime(2024, 8, 15, 18, 40, 51, 918, DateTimeKind.Local).AddTicks(7015),
+                            CreatedTs = new DateTime(2024, 8, 15, 18, 30, 23, 758, DateTimeKind.Local).AddTicks(7324),
                             Description = "tag1",
                             TagName = "TDC_Com.TDC1.Tag1",
-                            UpdatedTs = new DateTime(2024, 8, 15, 18, 40, 51, 918, DateTimeKind.Local).AddTicks(7015)
+                            UpdatedTs = new DateTime(2024, 8, 15, 18, 30, 23, 758, DateTimeKind.Local).AddTicks(7325)
                         },
                         new
                         {
                             Id = 2,
                             CameraId = 2,
-                            CreatedTs = new DateTime(2024, 8, 15, 18, 40, 51, 918, DateTimeKind.Local).AddTicks(7017),
+                            CreatedTs = new DateTime(2024, 8, 15, 18, 30, 23, 758, DateTimeKind.Local).AddTicks(7326),
                             Description = "tag2",
                             TagName = "TDC_Com.TDC1.Tag2",
-                            UpdatedTs = new DateTime(2024, 8, 15, 18, 40, 51, 918, DateTimeKind.Local).AddTicks(7017)
+                            UpdatedTs = new DateTime(2024, 8, 15, 18, 30, 23, 758, DateTimeKind.Local).AddTicks(7327)
                         },
                         new
                         {
                             Id = 3,
                             CameraId = 3,
-                            CreatedTs = new DateTime(2024, 8, 15, 18, 40, 51, 918, DateTimeKind.Local).AddTicks(7019),
+                            CreatedTs = new DateTime(2024, 8, 15, 18, 30, 23, 758, DateTimeKind.Local).AddTicks(7328),
                             Description = "tag3",
                             TagName = "TDC_Com.TDC1.Tag3",
-                            UpdatedTs = new DateTime(2024, 8, 15, 18, 40, 51, 918, DateTimeKind.Local).AddTicks(7019)
+                            UpdatedTs = new DateTime(2024, 8, 15, 18, 30, 23, 758, DateTimeKind.Local).AddTicks(7329)
                         },
                         new
                         {
                             Id = 4,
                             CameraId = 4,
-                            CreatedTs = new DateTime(2024, 8, 15, 18, 40, 51, 918, DateTimeKind.Local).AddTicks(7021),
+                            CreatedTs = new DateTime(2024, 8, 15, 18, 30, 23, 758, DateTimeKind.Local).AddTicks(7330),
                             Description = "tag4",
                             TagName = "TDC_Com.TDC1.Tag4",
-                            UpdatedTs = new DateTime(2024, 8, 15, 18, 40, 51, 918, DateTimeKind.Local).AddTicks(7021)
+                            UpdatedTs = new DateTime(2024, 8, 15, 18, 30, 23, 758, DateTimeKind.Local).AddTicks(7330)
                         });
                 });
 
@@ -248,6 +251,7 @@ namespace VideoInteraction.DataAccess.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")

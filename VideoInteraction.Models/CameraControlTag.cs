@@ -14,7 +14,7 @@ namespace VideoInteraction.Models
         [DisplayName("Camera Tag Name")]
         public string TagName { get; set; }
         public string Description { get; set; }
-        public DateTime CreatedTs { get; set; }
+        public DateTime CreatedTs { get; set; } = DateTime.Now;
         public DateTime UpdatedTs { get; set; }= DateTime.Now;
         public int CameraId { get; set; }
         [ForeignKey("CameraId")]
