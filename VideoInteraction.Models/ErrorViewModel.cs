@@ -1,4 +1,4 @@
-namespace VideoInteraction.Web.Models
+namespace VideoInteraction.Models
 {
     public class ErrorViewModel
     {

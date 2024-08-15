@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using VideoInteraction.Web.Models;
+using VideoInteraction.Models;
 
 namespace VideoInteraction.Web.Controllers
 {
