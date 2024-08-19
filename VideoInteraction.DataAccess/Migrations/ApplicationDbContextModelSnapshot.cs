@@ -86,6 +86,11 @@ namespace VideoInteraction.DataAccess.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasMaxLength(21)
+                        .HasColumnType("nvarchar(21)");
+
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -137,6 +142,10 @@ namespace VideoInteraction.DataAccess.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasDiscriminator().HasValue("IdentityUser");
+
+                    b.UseTphMappingStrategy();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -167,12 +176,10 @@ namespace VideoInteraction.DataAccess.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderKey")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
@@ -209,12 +216,10 @@ namespace VideoInteraction.DataAccess.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
@@ -258,7 +263,7 @@ namespace VideoInteraction.DataAccess.Migrations
                         {
                             Id = 1,
                             CameraCode = "code12312001",
-                            CreatedTs = new DateTime(2024, 8, 16, 16, 17, 52, 89, DateTimeKind.Local).AddTicks(4246),
+                            CreatedTs = new DateTime(2024, 8, 19, 10, 5, 40, 953, DateTimeKind.Local).AddTicks(1425),
                             Description = "",
                             Name = "Cam01"
                         },
@@ -266,7 +271,7 @@ namespace VideoInteraction.DataAccess.Migrations
                         {
                             Id = 2,
                             CameraCode = "code12312002",
-                            CreatedTs = new DateTime(2024, 8, 16, 16, 17, 52, 89, DateTimeKind.Local).AddTicks(4247),
+                            CreatedTs = new DateTime(2024, 8, 19, 10, 5, 40, 953, DateTimeKind.Local).AddTicks(1426),
                             Description = "",
                             Name = "Cam02"
                         },
@@ -274,7 +279,7 @@ namespace VideoInteraction.DataAccess.Migrations
                         {
                             Id = 3,
                             CameraCode = "code12312003",
-                            CreatedTs = new DateTime(2024, 8, 16, 16, 17, 52, 89, DateTimeKind.Local).AddTicks(4249),
+                            CreatedTs = new DateTime(2024, 8, 19, 10, 5, 40, 953, DateTimeKind.Local).AddTicks(1428),
                             Description = "",
                             Name = "Cam03"
                         });
@@ -317,37 +322,37 @@ namespace VideoInteraction.DataAccess.Migrations
                         {
                             Id = 1,
                             CameraId = 1,
-                            CreatedTs = new DateTime(2024, 8, 16, 16, 17, 52, 89, DateTimeKind.Local).AddTicks(4325),
+                            CreatedTs = new DateTime(2024, 8, 19, 10, 5, 40, 953, DateTimeKind.Local).AddTicks(1523),
                             Description = "tag1",
                             TagName = "TDC_Com.TDC1.Tag1",
-                            UpdatedTs = new DateTime(2024, 8, 16, 16, 17, 52, 89, DateTimeKind.Local).AddTicks(4325)
+                            UpdatedTs = new DateTime(2024, 8, 19, 10, 5, 40, 953, DateTimeKind.Local).AddTicks(1523)
                         },
                         new
                         {
                             Id = 2,
                             CameraId = 2,
-                            CreatedTs = new DateTime(2024, 8, 16, 16, 17, 52, 89, DateTimeKind.Local).AddTicks(4327),
+                            CreatedTs = new DateTime(2024, 8, 19, 10, 5, 40, 953, DateTimeKind.Local).AddTicks(1525),
                             Description = "tag2",
                             TagName = "TDC_Com.TDC1.Tag2",
-                            UpdatedTs = new DateTime(2024, 8, 16, 16, 17, 52, 89, DateTimeKind.Local).AddTicks(4327)
+                            UpdatedTs = new DateTime(2024, 8, 19, 10, 5, 40, 953, DateTimeKind.Local).AddTicks(1526)
                         },
                         new
                         {
                             Id = 3,
                             CameraId = 3,
-                            CreatedTs = new DateTime(2024, 8, 16, 16, 17, 52, 89, DateTimeKind.Local).AddTicks(4329),
+                            CreatedTs = new DateTime(2024, 8, 19, 10, 5, 40, 953, DateTimeKind.Local).AddTicks(1527),
                             Description = "tag3",
                             TagName = "TDC_Com.TDC1.Tag3",
-                            UpdatedTs = new DateTime(2024, 8, 16, 16, 17, 52, 89, DateTimeKind.Local).AddTicks(4329)
+                            UpdatedTs = new DateTime(2024, 8, 19, 10, 5, 40, 953, DateTimeKind.Local).AddTicks(1528)
                         },
                         new
                         {
                             Id = 4,
                             CameraId = 4,
-                            CreatedTs = new DateTime(2024, 8, 16, 16, 17, 52, 89, DateTimeKind.Local).AddTicks(4331),
+                            CreatedTs = new DateTime(2024, 8, 19, 10, 5, 40, 953, DateTimeKind.Local).AddTicks(1529),
                             Description = "tag4",
                             TagName = "TDC_Com.TDC1.Tag4",
-                            UpdatedTs = new DateTime(2024, 8, 16, 16, 17, 52, 89, DateTimeKind.Local).AddTicks(4331)
+                            UpdatedTs = new DateTime(2024, 8, 19, 10, 5, 40, 953, DateTimeKind.Local).AddTicks(1529)
                         });
                 });
 
@@ -369,7 +374,7 @@ namespace VideoInteraction.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("measurementPrefixes");
+                    b.ToTable("MeasurementPrefixes");
                 });
 
             modelBuilder.Entity("VideoInteraction.Models.MeasurementTag", b =>
@@ -471,6 +476,21 @@ namespace VideoInteraction.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Windows");
+                });
+
+            modelBuilder.Entity("BulkyBook.Models.ApplicationUser", b =>
+                {
+                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasDiscriminator().HasValue("ApplicationUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

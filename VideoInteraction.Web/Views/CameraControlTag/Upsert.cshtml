@@ -2,16 +2,16 @@
 
 <div class="card shadow border-0 my-4">
     <div class="card-header bg-secondary bg-gradient ml-0 py-3">
-    <div class="row">
-        <div class="col-12 text-center">
-                <h2 class="text-white py-2"> @(Model.CameraControlTag.Id!=0?"Update":"Create") CameraControlTag</h2>
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-white py-2"> @(Model.CameraControlTag.Id != 0 ? "Update" : "Create") CameraControlTag</h2>
+            </div>
         </div>
-    </div>
     </div>
     <div class="card-body p-4">
         <form method="post" class="row" enctype="multipart/form-data">
             <input asp-for="CameraControlTag.Id" hidden />
-           
+
             <div class="row">
                 <div class="col-10">
                     <div class="border p-3">
@@ -25,13 +25,13 @@
                             <label asp-for="CameraControlTag.Description" class="ms-2 text-muted"></label>
                             <textarea asp-for="CameraControlTag.Description" class="form-control border-0 shadow"></textarea>
                         </div>
-@*                         <div class="form-floating py-2 col-12">
-                            <label asp-for="CameraControlTag.CreatedTs" class="ms-2 text-muted"></label>
-                            <textarea asp-for="CameraControlTag.CreatedTs" class="form-control border-0 shadow"></textarea>
+                        @*                         <div class="form-floating py-2 col-12">
+                        <label asp-for="CameraControlTag.CreatedTs" class="ms-2 text-muted"></label>
+                        <textarea asp-for="CameraControlTag.CreatedTs" class="form-control border-0 shadow"></textarea>
                         </div>
                         <div class="form-floating py-2 col-12">
-                            <label asp-for="CameraControlTag.UpdatedTs" class="ms-2 text-muted"></label>
-                            <textarea asp-for="CameraControlTag.UpdatedTs" class="form-control border-0 shadow"></textarea>
+                        <label asp-for="CameraControlTag.UpdatedTs" class="ms-2 text-muted"></label>
+                        <textarea asp-for="CameraControlTag.UpdatedTs" class="form-control border-0 shadow"></textarea>
                         </div> *@
                         <div class="form-floating py-2 col-12">
                             <select asp-for="@Model.CameraControlTag.CameraId" asp-items="@Model.CameraList" class="form-select border-0 shadow">
@@ -63,7 +63,7 @@
                     </div>
                 </div>
             </div>
-           
+
         </form>
     </div>
 </div>
@@ -71,8 +71,8 @@
 
 
 
-@section Scripts{
-@*     <script>
+@section Scripts {
+    @*     <script>
         tinymce.init({
             selector: 'textarea',
             plugins: 'anchor autolink charmap codesample emoticons  lists   table visualblocks wordcount',
@@ -80,6 +80,6 @@
         });
     </script> *@
     @{
-    <partial name="_ValidationScriptsPartial"/>
+        <partial name="_ValidationScriptsPartial" />
     }
 }

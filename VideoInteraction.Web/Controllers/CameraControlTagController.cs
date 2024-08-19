@@ -6,6 +6,7 @@ using System.Data;
 using VideoInteraction.DataAccess.Repository.IRepository;
 using VideoInteraction.Models;
 using VideoInteraction.Models.ViewModels;
+using VideoInteraction.Utility;
 
 namespace VideoInteraction.Web.Controllers
 {
@@ -24,7 +25,7 @@ namespace VideoInteraction.Web.Controllers
             //List<CameraControlTag> objCameraControlTagList = _unitOfWork.CameraControlTag.GetAll().ToList();
             return View(objCameraControlTagList);
         }
-
+        [Authorize(Roles = SD.Role_Admin)]
         public IActionResult Upsert(int? id)
         {
             CameraControlTagVM CameraControlTagVM = new()
@@ -49,6 +50,7 @@ namespace VideoInteraction.Web.Controllers
             }
             
         }
+        [Authorize(Roles = SD.Role_Admin)]
         [HttpPost]
         public IActionResult Upsert(CameraControlTagVM CameraControlTagVM, List<IFormFile> files)
         {

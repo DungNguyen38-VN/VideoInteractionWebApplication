@@ -22,7 +22,7 @@ namespace VideoInteraction.DataAccess.Repository
         
         public void Update(MeasurementPrefix obj)
         {
-            _db.measurementPrefixes.Update(obj);
+            _db.MeasurementPrefixes.Update(obj);
         }
     }
 }

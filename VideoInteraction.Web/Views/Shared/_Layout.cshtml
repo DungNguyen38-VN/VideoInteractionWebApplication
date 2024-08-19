@@ -27,6 +27,8 @@
                             <li class="nav-item">
                                 <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                             </li>
+                        @if (User.IsInRole(SD.Role_Admin) || User.IsInRole(SD.Role_Customer))
+                        {
                             <li class="nav-item">
                                 <a class="nav-link" asp-area="" asp-controller="Window" asp-action="Index">Window</a>
                             </li>
@@ -45,6 +47,8 @@
                             <li class="nav-item">
                                 <a class="nav-link" asp-area="" asp-controller="MeasurementPrefix" asp-action="Index">Measurement Prefix</a>
                             </li>
+                        }
+     
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>

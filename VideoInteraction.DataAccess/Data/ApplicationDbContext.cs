@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using BulkyBook.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using VideoInteraction.Models;
@@ -14,9 +15,10 @@ namespace VideoInteraction.DataAccess.Data
         public DbSet<Camera> Cameras { get; set; }
         public DbSet<CameraControlTag> CameraControlTags { get; set; }
         public DbSet<MeasurementUnit> MeasurementUnits { get; set; }
-        public DbSet<MeasurementPrefix> measurementPrefixes { get; set; }
+        public DbSet<MeasurementPrefix> MeasurementPrefixes { get; set; }
         public DbSet<MeasurementTag> MeasurementTags { get; set; }
         public DbSet<Window> Windows { get; set; }
+        public DbSet<ApplicationUser>  ApplicationUsers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
