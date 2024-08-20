@@ -117,7 +117,127 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Menu_Camera" xml:space="preserve">
+  <data name="Camera" xml:space="preserve">
     <value>Camera</value>
+  </data>
+  <data name="CameraControlTag" xml:space="preserve">
+    <value>Tag  Control Camera</value>
+  </data>
+  <data name="MeasurementTag" xml:space="preserve">
+    <value>Measurement Tag</value>
+  </data>
+  <data name="MeasurementUnit" xml:space="preserve">
+    <value>Measurement Unit</value>
+  </data>
+  <data name="MeasurementPrefix" xml:space="preserve">
+    <value>Measurement Prefix</value>
+  </data>
+  <data name="Window" xml:space="preserve">
+    <value>Window</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Home Page</value>
+  </data>
+  <data name="CameraName" xml:space="preserve">
+    <value>Camera Name</value>
+  </data>
+  <data name="CameraCode" xml:space="preserve">
+    <value>Camera Code</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="CreatedTime" xml:space="preserve">
+    <value>Created Time</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="CreateNewCamera" xml:space="preserve">
+    <value>Create New Camera</value>
+  </data>
+  <data name="CameraList" xml:space="preserve">
+    <value>Camera List</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>Create</value>
+  </data>
+  <data name="BacktoList" xml:space="preserve">
+    <value>Back to List</value>
+  </data>
+  <data name="DeleteCamera" xml:space="preserve">
+    <value>Delete Camera</value>
+  </data>
+  <data name="EditCamera" xml:space="preserve">
+    <value>Edit Camera</value>
+  </data>
+  <data name="TagsConfiguration" xml:space="preserve">
+    <value>Tags Configuration</value>
+  </data>
+  <data name="MeasurementDisplay" xml:space="preserve">
+    <value>Measurement Display</value>
+  </data>
+  <data name="WindowList" xml:space="preserve">
+    <value>Window List</value>
+  </data>
+  <data name="WindowURL" xml:space="preserve">
+    <value>Window URL</value>
+  </data>
+  <data name="WindowID" xml:space="preserve">
+    <value>Window ID</value>
+  </data>
+  <data name="WindowName" xml:space="preserve">
+    <value>Window Name</value>
+  </data>
+  <data name="CreateNewWindow" xml:space="preserve">
+    <value>Create New Window</value>
+  </data>
+  <data name="EditWindow" xml:space="preserve">
+    <value>Edit Window</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="DeleteWindow" xml:space="preserve">
+    <value>Delete Window</value>
+  </data>
+  <data name="OPCTagControlCameraList" xml:space="preserve">
+    <value>OPC Tag Control Camera List</value>
+  </data>
+  <data name="CreateNewTag" xml:space="preserve">
+    <value>Create New Camera Tag</value>
+  </data>
+  <data name="TagName" xml:space="preserve">
+    <value>Tag Name</value>
+  </data>
+  <data name="UpdatedTime" xml:space="preserve">
+    <value>Updated Time</value>
+  </data>
+  <data name="List" xml:space="preserve">
+    <value>List</value>
+  </data>
+  <data name="PrefixName" xml:space="preserve">
+    <value>Prefix Name</value>
+  </data>
+  <data name="UnitName" xml:space="preserve">
+    <value>Unit Name</value>
+  </data>
+  <data name="DisplayOrder" xml:space="preserve">
+    <value>Display Order</value>
+  </data>
+  <data name="Select" xml:space="preserve">
+    <value>Select</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Logout</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Register</value>
   </data>
 </root>

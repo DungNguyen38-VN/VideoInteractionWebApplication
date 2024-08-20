@@ -4,7 +4,7 @@
     <div class="card-header bg-secondary bg-gradient ml-0 py-3">
         <div class="row">
             <div class="col-12 text-center">
-                <h2 class="text-white py-2">Window List</h2>
+                <h2 class="text-white py-2">@_localization.Getkey("WindowList").Value</h2>
             </div>
         </div>
     </div>
@@ -14,7 +14,7 @@
             </div>
             <div class="col-6 text-end">
                 <a asp-controller="Window" asp-action="Create" class="btn btn-primary">
-                    <i class="bi bi-plus-circle"></i>  Create New Window
+                    <i class="bi bi-plus-circle"></i>@_localization.Getkey("CreateNewWindow").Value
                 </a>
             </div>
         </div>
@@ -23,19 +23,19 @@
             <thead>
                 <tr>
                     <th>
-                        Window Name
+                        @_localization.Getkey("WindowName").Value
                     </th>
                     <th>
-                        Window ID
+                        @_localization.Getkey("WindowID").Value
                     </th>
                     <th>
-                        Window URL
+                        @_localization.Getkey("WindowURL").Value
                     </th>
                     <th>
-                        Window Description
+                        @_localization.Getkey("Description").Value
                     </th>
                     <th>
-                        Created Time
+                        @_localization.Getkey("CreatedTime").Value
                     </th>
                     <th></th>
                 </tr>
@@ -60,10 +60,10 @@
                         <td>
                             <div class="w-75 btn-group" role="group">
                                 <a asp-controller="Window" asp-action="Edit" asp-route-id="@obj.Id" class="btn btn-primary mx-2">
-                                    <i class="bi bi-pencil-square"></i> Edit
+                                    <i class="bi bi-pencil-square"></i>@_localization.Getkey("Edit").Value
                                 </a>
                                 <a asp-controller="Window" asp-action="Delete" asp-route-id="@obj.Id" class="btn btn-danger mx-2">
-                                    <i class="bi bi-trash-fill"></i> Delete
+                                    <i class="bi bi-trash-fill"></i>@_localization.Getkey("Delete").Value
                                 </a>
                             </div>
                         </td>

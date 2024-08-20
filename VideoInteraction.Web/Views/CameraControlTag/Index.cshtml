@@ -4,7 +4,7 @@
     <div class="card-header bg-secondary bg-gradient ml-0 py-3">
         <div class="row">
             <div class="col-12 text-center">
-                <h2 class="text-white py-2">Camera Control Tag List</h2>
+                <h2 class="text-white py-2">@_localization.Getkey("OPCTagControlCameraList").Value</h2>
             </div>
         </div>
     </div>
@@ -12,28 +12,29 @@
         <div class="row pb-3">
             <div class="col-6">
             </div>
-                <div class="col-6 text-end">
-                    <a asp-controller="CameraControlTag" asp-action="Upsert" class="btn btn-primary">
-                        <i class="bi bi-plus-circle"></i>  Create New Camera Tag
-                    </a>
-                </div>
+            <div class="col-6 text-end">
+                <a asp-controller="CameraControlTag" asp-action="Upsert" class="btn btn-primary">
+                    <i class="bi bi-plus-circle"></i>@_localization.Getkey("CreateNewTag").Value
+                </a>
+            </div>
         </div>
 
         <table id="tblData" class="table table-bordered table-striped" style="width:100%">
             <thead>
                 <tr>
-                    <th>TagName</th>
-                    <th>Description</th>
-                    <th>CreatedTs</th>
-                    <th>UpdatedTs</th>
-                    <th>Camera</th>
+                    <th>@_localization.Getkey("TagName").Value </th>
+                    <th>@_localization.Getkey("Description").Value </th>
+                    <th>@_localization.Getkey("CreatedTime").Value</th>
+                    <th>@_localization.Getkey("UpdatedTime").Value</th>
+                    <th>@_localization.Getkey("Camera").Value </th>
                     <th></th>
                 </tr>
             </thead>
         </table>
-
     </div>
+
 </div>
+
 
 @section Scripts {
     <script src="~/js/CameraControlTag.js"></script>

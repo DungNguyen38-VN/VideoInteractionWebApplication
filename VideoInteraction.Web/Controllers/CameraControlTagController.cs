@@ -25,7 +25,6 @@ namespace VideoInteraction.Web.Controllers
             //List<CameraControlTag> objCameraControlTagList = _unitOfWork.CameraControlTag.GetAll().ToList();
             return View(objCameraControlTagList);
         }
-        [Authorize(Roles = SD.Role_Admin)]
         public IActionResult Upsert(int? id)
         {
             CameraControlTagVM CameraControlTagVM = new()
@@ -50,7 +49,6 @@ namespace VideoInteraction.Web.Controllers
             }
             
         }
-        [Authorize(Roles = SD.Role_Admin)]
         [HttpPost]
         public IActionResult Upsert(CameraControlTagVM CameraControlTagVM, List<IFormFile> files)
         {

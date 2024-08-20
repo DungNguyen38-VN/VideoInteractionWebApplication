@@ -3,7 +3,7 @@
     <div class="card-header bg-secondary bg-gradient ml-0 py-3">
         <div class="row">
             <div class="col-12 text-center">
-                <h2 class="text-white py-2">Edit Camera</h2>
+                <h2 class="text-white py-2">@_localization.Getkey("DeleteCamera").Value</h2>
             </div>
         </div>
     </div>
@@ -14,17 +14,17 @@
                 @*<div asp-validation-summary="ModelOnly"></div>*@
                <div class="form-floating py-2 col-12">
                     <input asp-for="Name" class="form-control border-0 shadow" />
-                    <label asp-for="Name" class="ms-2"></label>
+                    <label asp-for="Name" class="ms-2">@_localization.Getkey("CameraName").Value</label>
                     <span asp-validation-for="Name" class="text-danger"></span>
                 </div>
                 <div class="form-floating py-2 col-12">
                     <input asp-for="CameraCode" class="form-control border-0 shadow" />
-                    <label asp-for="CameraCode" class="ms-2"></label>
+                    <label asp-for="CameraCode" class="ms-2">@_localization.Getkey("CameraCode").Value</label>
                     <span asp-validation-for="CameraCode" class="text-danger"></span>
                 </div>  
                 <div class="form-floating py-2 col-12">
                     <input asp-for="Description" class="form-control border-0 shadow" />
-                    <label asp-for="Description" class="ms-2"></label>
+                    <label asp-for="Description" class="ms-2">@_localization.Getkey("Description").Value</label>
                     @* <span asp-validation-for="Description" class="text-danger"></span> *@
                 </div>
 
@@ -34,7 +34,7 @@
                     </div>
                     <div class="col-6 col-md-3">
                         <a asp-controller="Camera" asp-action="Index" class="btn btn-secondary border  form-control">
-                            Back to List
+                            @_localization.Getkey("BacktoList").Value
                         </a>
                     </div>
                 </div>

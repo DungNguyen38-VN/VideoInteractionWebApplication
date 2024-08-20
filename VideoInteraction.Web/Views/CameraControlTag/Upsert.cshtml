@@ -4,7 +4,7 @@
     <div class="card-header bg-secondary bg-gradient ml-0 py-3">
         <div class="row">
             <div class="col-12 text-center">
-                <h2 class="text-white py-2"> @(Model.CameraControlTag.Id != 0 ? "Update" : "Create") CameraControlTag</h2>
+                <h2 class="text-white py-2"> @(Model.CameraControlTag.Id != 0 ? @_localization.Getkey("Update").Value : @_localization.Getkey("Create").Value) @_localization.Getkey("CameraControlTag").Value</h2>
             </div>
         </div>
     </div>
@@ -18,26 +18,26 @@
                         @*<div asp-validation-summary="ModelOnly"></div>*@
                         <div class="form-floating py-2 col-12">
                             <input asp-for="CameraControlTag.TagName" class="form-control border-0 shadow" />
-                            <label asp-for="CameraControlTag.TagName" class="ms-2"></label>
+                            <label asp-for="CameraControlTag.TagName" class="ms-2">@_localization.Getkey("TagName").Value</label>
                             <span asp-validation-for="CameraControlTag.TagName" class="text-danger"></span>
                         </div>
                         <div class="form-floating py-2 col-12">
-                            <label asp-for="CameraControlTag.Description" class="ms-2 text-muted"></label>
+                            <label asp-for="CameraControlTag.Description" class="ms-2 text-muted">@_localization.Getkey("Description").Value</label>
                             <textarea asp-for="CameraControlTag.Description" class="form-control border-0 shadow"></textarea>
                         </div>
-                        @*                         <div class="form-floating py-2 col-12">
-                        <label asp-for="CameraControlTag.CreatedTs" class="ms-2 text-muted"></label>
-                        <textarea asp-for="CameraControlTag.CreatedTs" class="form-control border-0 shadow"></textarea>
+                        <div class="form-floating py-2 col-12">
+                            <label asp-for="CameraControlTag.CreatedTs" class="ms-2 text-muted"></label>
+                            <textarea asp-for="CameraControlTag.CreatedTs" class="form-control border-0 shadow"></textarea>
                         </div>
                         <div class="form-floating py-2 col-12">
-                        <label asp-for="CameraControlTag.UpdatedTs" class="ms-2 text-muted"></label>
-                        <textarea asp-for="CameraControlTag.UpdatedTs" class="form-control border-0 shadow"></textarea>
-                        </div> *@
+                            <label asp-for="CameraControlTag.UpdatedTs" class="ms-2 text-muted"></label>
+                            <textarea asp-for="CameraControlTag.UpdatedTs" class="form-control border-0 shadow"></textarea>
+                        </div>
                         <div class="form-floating py-2 col-12">
                             <select asp-for="@Model.CameraControlTag.CameraId" asp-items="@Model.CameraList" class="form-select border-0 shadow">
-                                <option disabled selected>--Select Camera--</option>
+                                <option disabled selected>--@_localization.Getkey("Select").Value @_localization.Getkey("Camera").Value--</option>
                             </select>
-                            <label asp-for="CameraControlTag.CameraId" class="ms-2"></label>
+                            <label asp-for="CameraControlTag.CameraId" class="ms-2">@_localization.Getkey("Camera").Value</label>
                             <span asp-validation-for="CameraControlTag.CameraId" class="text-danger"></span>
                         </div>
 
@@ -45,16 +45,16 @@
                             <div class="col-6 col-md-3">
                                 @if (Model.CameraControlTag.Id != 0)
                                 {
-                                    <button type="submit" class="btn btn-primary form-control">Update</button>
+                                    <button type="submit" class="btn btn-primary form-control">@_localization.Getkey("Update").Value</button>
                                 }
                                 else
                                 {
-                                    <button type="submit" class="btn btn-primary form-control">Create</button>
+                                    <button type="submit" class="btn btn-primary form-control">@_localization.Getkey("Create").Value</button>
                                 }
                             </div>
                             <div class="col-6 col-md-3">
                                 <a asp-controller="CameraControlTag" asp-action="Index" class="btn btn-outline-primary border  form-control">
-                                    Back to List
+                                    @_localization.Getkey("BacktoList").Value
                                 </a>
                             </div>
                         </div>
@@ -79,6 +79,7 @@
             toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough |  align lineheight | numlist bullist indent outdent',
         });
     </script> *@
+
     @{
         <partial name="_ValidationScriptsPartial" />
     }

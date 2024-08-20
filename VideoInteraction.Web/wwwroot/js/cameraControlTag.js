@@ -9,10 +9,10 @@ function loadDataTable() {
         "ajax": { url:'/cameracontroltag/getall'},
         "columns": [
             { data: 'tagName', "width": "20%" },
-            { data: 'description', "width": "25%" },
-            { data: 'createdTs', "width": "25%" },
-            { data: 'updatedTs', "width": "25%" },
-            { data: 'camera.name', "width": "10%" },
+            { data: 'description', "width": "15%" },
+            { data: 'createdTs', "width": "20%" },
+            { data: 'updatedTs', "width": "20%" },
+            { data: 'camera.name', "width": "15%" },
             {
                 data: 'id',
                 "render": function (data) {

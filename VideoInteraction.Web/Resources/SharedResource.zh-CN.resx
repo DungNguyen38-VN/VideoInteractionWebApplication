@@ -117,7 +117,127 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Menu_Camera" xml:space="preserve">
+  <data name="Camera" xml:space="preserve">
     <value>摄像机</value>
+  </data>
+  <data name="CameraControlTag" xml:space="preserve">
+    <value>标签控制摄像机</value>
+  </data>
+  <data name="MeasurementTag" xml:space="preserve">
+    <value>测量标签</value>
+  </data>
+  <data name="MeasurementUnit" xml:space="preserve">
+    <value>测量单位</value>
+  </data>
+  <data name="MeasurementPrefix" xml:space="preserve">
+    <value>测量字段</value>
+  </data>
+  <data name="Window" xml:space="preserve">
+    <value>窗口</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>主页面</value>
+  </data>
+  <data name="CameraName" xml:space="preserve">
+    <value>摄像机名称</value>
+  </data>
+  <data name="CameraCode" xml:space="preserve">
+    <value>摄像机代码</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>描述</value>
+  </data>
+  <data name="CreatedTime" xml:space="preserve">
+    <value>创建时间</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>编辑</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>删除</value>
+  </data>
+  <data name="CreateNewCamera" xml:space="preserve">
+    <value>添加摄像机</value>
+  </data>
+  <data name="CameraList" xml:space="preserve">
+    <value>摄像机列表</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>添加</value>
+  </data>
+  <data name="BacktoList" xml:space="preserve">
+    <value>返回</value>
+  </data>
+  <data name="DeleteCamera" xml:space="preserve">
+    <value>删除摄像机</value>
+  </data>
+  <data name="EditCamera" xml:space="preserve">
+    <value>编辑摄像机</value>
+  </data>
+  <data name="TagsConfiguration" xml:space="preserve">
+    <value>OPC标签设置</value>
+  </data>
+  <data name="MeasurementDisplay" xml:space="preserve">
+    <value>测量显示</value>
+  </data>
+  <data name="WindowList" xml:space="preserve">
+    <value>窗口列表</value>
+  </data>
+  <data name="WindowURL" xml:space="preserve">
+    <value>窗口URL</value>
+  </data>
+  <data name="WindowID" xml:space="preserve">
+    <value>窗口ID</value>
+  </data>
+  <data name="WindowName" xml:space="preserve">
+    <value>窗口名称</value>
+  </data>
+  <data name="CreateNewWindow" xml:space="preserve">
+    <value>添加窗口</value>
+  </data>
+  <data name="EditWindow" xml:space="preserve">
+    <value>编辑窗口</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>更新</value>
+  </data>
+  <data name="DeleteWindow" xml:space="preserve">
+    <value>删除窗口</value>
+  </data>
+  <data name="OPCTagControlCameraList" xml:space="preserve">
+    <value>OPC标签控制摄像机列表</value>
+  </data>
+  <data name="CreateNewTag" xml:space="preserve">
+    <value>添加标签</value>
+  </data>
+  <data name="TagName" xml:space="preserve">
+    <value>标签名称</value>
+  </data>
+  <data name="UpdatedTime" xml:space="preserve">
+    <value>更新时间</value>
+  </data>
+  <data name="List" xml:space="preserve">
+    <value>列表</value>
+  </data>
+  <data name="PrefixName" xml:space="preserve">
+    <value>字段名称</value>
+  </data>
+  <data name="UnitName" xml:space="preserve">
+    <value>单位名称</value>
+  </data>
+  <data name="DisplayOrder" xml:space="preserve">
+    <value>显示顺序</value>
+  </data>
+  <data name="Select" xml:space="preserve">
+    <value>选择</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>登出</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>登录</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>注册</value>
   </data>
 </root>
