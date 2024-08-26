@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BulkyBook.Models {
+namespace VideoInteraction.Models {
 	public class ApplicationUser:IdentityUser {
 		[Required]
         public string Name { get; set; }
