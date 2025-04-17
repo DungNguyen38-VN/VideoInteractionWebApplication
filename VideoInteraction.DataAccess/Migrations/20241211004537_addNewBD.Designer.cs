@@ -12,8 +12,8 @@ using VideoInteraction.DataAccess.Data;
 namespace VideoInteraction.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240819030542_rebuildDBTables")]
-    partial class rebuildDBTables
+    [Migration("20241211004537_addNewBD")]
+    partial class addNewBD
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -89,11 +89,6 @@ namespace VideoInteraction.DataAccess.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasMaxLength(21)
-                        .HasColumnType("nvarchar(21)");
-
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -145,10 +140,6 @@ namespace VideoInteraction.DataAccess.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
-
-                    b.HasDiscriminator().HasValue("IdentityUser");
-
-                    b.UseTphMappingStrategy();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -266,7 +257,7 @@ namespace VideoInteraction.DataAccess.Migrations
                         {
                             Id = 1,
                             CameraCode = "code12312001",
-                            CreatedTs = new DateTime(2024, 8, 19, 10, 5, 40, 953, DateTimeKind.Local).AddTicks(1425),
+                            CreatedTs = new DateTime(2024, 12, 11, 8, 45, 36, 466, DateTimeKind.Local).AddTicks(7574),
                             Description = "",
                             Name = "Cam01"
                         },
@@ -274,7 +265,7 @@ namespace VideoInteraction.DataAccess.Migrations
                         {
                             Id = 2,
                             CameraCode = "code12312002",
-                            CreatedTs = new DateTime(2024, 8, 19, 10, 5, 40, 953, DateTimeKind.Local).AddTicks(1426),
+                            CreatedTs = new DateTime(2024, 12, 11, 8, 45, 36, 466, DateTimeKind.Local).AddTicks(7685),
                             Description = "",
                             Name = "Cam02"
                         },
@@ -282,9 +273,17 @@ namespace VideoInteraction.DataAccess.Migrations
                         {
                             Id = 3,
                             CameraCode = "code12312003",
-                            CreatedTs = new DateTime(2024, 8, 19, 10, 5, 40, 953, DateTimeKind.Local).AddTicks(1428),
+                            CreatedTs = new DateTime(2024, 12, 11, 8, 45, 36, 466, DateTimeKind.Local).AddTicks(7794),
                             Description = "",
                             Name = "Cam03"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CameraCode = "code12312004",
+                            CreatedTs = new DateTime(2024, 12, 11, 8, 45, 36, 466, DateTimeKind.Local).AddTicks(7903),
+                            Description = "",
+                            Name = "Cam04"
                         });
                 });
 
@@ -325,37 +324,37 @@ namespace VideoInteraction.DataAccess.Migrations
                         {
                             Id = 1,
                             CameraId = 1,
-                            CreatedTs = new DateTime(2024, 8, 19, 10, 5, 40, 953, DateTimeKind.Local).AddTicks(1523),
+                            CreatedTs = new DateTime(2024, 12, 11, 8, 45, 36, 466, DateTimeKind.Local).AddTicks(8452),
                             Description = "tag1",
                             TagName = "TDC_Com.TDC1.Tag1",
-                            UpdatedTs = new DateTime(2024, 8, 19, 10, 5, 40, 953, DateTimeKind.Local).AddTicks(1523)
+                            UpdatedTs = new DateTime(2024, 12, 11, 8, 45, 36, 466, DateTimeKind.Local).AddTicks(8511)
                         },
                         new
                         {
                             Id = 2,
                             CameraId = 2,
-                            CreatedTs = new DateTime(2024, 8, 19, 10, 5, 40, 953, DateTimeKind.Local).AddTicks(1525),
+                            CreatedTs = new DateTime(2024, 12, 11, 8, 45, 36, 466, DateTimeKind.Local).AddTicks(8680),
                             Description = "tag2",
                             TagName = "TDC_Com.TDC1.Tag2",
-                            UpdatedTs = new DateTime(2024, 8, 19, 10, 5, 40, 953, DateTimeKind.Local).AddTicks(1526)
+                            UpdatedTs = new DateTime(2024, 12, 11, 8, 45, 36, 466, DateTimeKind.Local).AddTicks(8734)
                         },
                         new
                         {
                             Id = 3,
                             CameraId = 3,
-                            CreatedTs = new DateTime(2024, 8, 19, 10, 5, 40, 953, DateTimeKind.Local).AddTicks(1527),
+                            CreatedTs = new DateTime(2024, 12, 11, 8, 45, 36, 466, DateTimeKind.Local).AddTicks(8897),
                             Description = "tag3",
                             TagName = "TDC_Com.TDC1.Tag3",
-                            UpdatedTs = new DateTime(2024, 8, 19, 10, 5, 40, 953, DateTimeKind.Local).AddTicks(1528)
+                            UpdatedTs = new DateTime(2024, 12, 11, 8, 45, 36, 466, DateTimeKind.Local).AddTicks(8986)
                         },
                         new
                         {
                             Id = 4,
                             CameraId = 4,
-                            CreatedTs = new DateTime(2024, 8, 19, 10, 5, 40, 953, DateTimeKind.Local).AddTicks(1529),
+                            CreatedTs = new DateTime(2024, 12, 11, 8, 45, 36, 466, DateTimeKind.Local).AddTicks(9152),
                             Description = "tag4",
                             TagName = "TDC_Com.TDC1.Tag4",
-                            UpdatedTs = new DateTime(2024, 8, 19, 10, 5, 40, 953, DateTimeKind.Local).AddTicks(1529)
+                            UpdatedTs = new DateTime(2024, 12, 11, 8, 45, 36, 466, DateTimeKind.Local).AddTicks(9207)
                         });
                 });
 
@@ -479,21 +478,6 @@ namespace VideoInteraction.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Windows");
-                });
-
-            modelBuilder.Entity("BulkyBook.Models.ApplicationUser", b =>
-                {
-                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Role")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasDiscriminator().HasValue("ApplicationUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

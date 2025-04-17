@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using OfficeOpenXml;
 using VideoInteraction.DataAccess.Repository.IRepository;
 using VideoInteraction.Models;
 
@@ -90,6 +91,66 @@ namespace VideoInteraction.Web.Controllers
             _unitOfWork.Camera.Remove(obj);
             _unitOfWork.Save();
             TempData["success"] = "Camera deleted successfully";
+            return RedirectToAction("Index");
+        }
+        [HttpPost]
+        public IActionResult ImportExcel(IFormFile file)
+        {
+            if (file == null || file.Length == 0)
+            {
+                TempData["Error"] = "Please select a valid Excel file.";
+                return RedirectToAction("Index");
+            }
+            try
+            {
+
+                using (var stream = new MemoryStream())
+                {
+                    file.CopyTo(stream);
+
+                    using (var package = new ExcelPackage(stream))
+                    {
+                        var worksheet = package.Workbook.Worksheets[0];
+                        var rowCount = worksheet.Dimension.Rows;
+                        List<Camera> cameras = new List<Camera>();
+                        for (int row = 2; row <= rowCount; row++)
+                        {
+                            var cameraName = worksheet.Cells[row, 1].Value?.ToString();
+                            var cameraCode = worksheet.Cells[row, 2].Value?.ToString();
+                            var cameraIp = worksheet.Cells[row, 3].Value?.ToString();
+                            var l1controlId = worksheet.Cells[row, 4].Value?.ToString();
+                            var existedCamera = _unitOfWork.Camera.Get(e => e.CameraCode == cameraCode);
+                            if (existedCamera != null)
+                            {
+                                TempData["error"] = $"相机代号 '{cameraCode}' 已经存在，无法新增";
+                                return RedirectToAction("Index");
+                            }
+
+                            Camera newCam = new Camera()
+                            {
+                                Name = cameraName,
+                                CameraCode = cameraCode,
+                                CameraIp=cameraIp,
+                                L1ControlId=int.Parse(l1controlId),
+                                CreatedTs = DateTime.Now,
+                                
+                            };
+                            cameras.Add(newCam);
+                        }
+                        _unitOfWork.Camera.AddRange(cameras);
+                        _unitOfWork.Save();
+                    }
+                }
+
+                //_unitOfWork.Save();
+                TempData["Success"] = "Equipment data imported successfully!";
+
+
+            }
+            catch (Exception ex)
+            {
+                TempData["success"] = $"Import excel error: {ex.Message}";
+            }
             return RedirectToAction("Index");
         }
     }

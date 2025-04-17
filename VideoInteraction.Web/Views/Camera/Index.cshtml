@@ -9,15 +9,21 @@
         </div>
     </div>
     <div class="card-body p-4">
-            <div class="row pb-3">
-                <div class="col-6">
-                </div>
-                <div class="col-6 text-end">
-                    <a asp-controller="Camera" asp-action="Create" class="btn btn-primary">
-                    <i class="bi bi-plus-circle"></i>@_localization.Getkey("CreateNewCamera").Value
-                    </a>
-                </div>
+
+        <div class="row pb-3">
+            <div class="col-md-4">
+                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#importExcelModal">
+                    <i class="bi bi-upload"></i> @_localization.Getkey("ImportExcel").Value
+                </button>
             </div>
+@*             <div class="col-6">
+            </div> *@
+            <div class="col-6 text-end">
+                <a asp-controller="Camera" asp-action="Create" class="btn btn-primary">
+                    <i class="bi bi-plus-circle"></i>@_localization.Getkey("CreateNewCamera").Value
+                </a>
+            </div>
+        </div>
 
         <table class="table table-bordered table-striped">
             <thead>
@@ -30,6 +36,12 @@
                     </th>
                     <th>
                         @_localization.Getkey("Description").Value
+                    </th>
+                    <th>
+                        @_localization.Getkey("IP").Value
+                    </th>
+                    <th>
+                        @_localization.Getkey("L1ControlId").Value
                     </th>
                     <th>
                         @_localization.Getkey("CreatedTime").Value
@@ -49,18 +61,24 @@
                             @obj.Description
                         </td>
                         <td>
+                            @obj.CameraIp
+                        </td> 
+                        <td>
+                            @obj.L1ControlId
+                        </td>
+                        <td>
                             @obj.CreatedTs
                         </td>
-                            <td>
-                                <div class="w-75 btn-group" role="group">
-                                    <a asp-controller="Camera" asp-action="Edit" asp-route-id="@obj.Id" class="btn btn-primary mx-2">
+                        <td>
+                            <div class="w-75 btn-group" role="group">
+                                <a asp-controller="Camera" asp-action="Edit" asp-route-id="@obj.Id" class="btn btn-primary mx-2">
                                     <i class="bi bi-pencil-square"></i>@_localization.Getkey("Edit").Value
                                 </a>
-                                    <a asp-controller="Camera" asp-action="Delete" asp-route-id="@obj.Id" class="btn btn-danger mx-2">
+                                <a asp-controller="Camera" asp-action="Delete" asp-route-id="@obj.Id" class="btn btn-danger mx-2">
                                     <i class="bi bi-trash-fill"></i> @_localization.Getkey("Delete").Value
-                                    </a>
-                                </div>
-                            </td>
+                                </a>
+                            </div>
+                        </td>
                     </tr>
                 }
             </tbody>
@@ -69,3 +87,27 @@
     </div>
 </div>
 
+<!-- Modal Import Excel -->
+<div class="modal fade" id="importExcelModal" tabindex="-1" aria-labelledby="importExcelModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="importExcelModalLabel">Import Excel File</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Form upload file -->
+                <form id="importForm" asp-controller="Camera" asp-action="ImportExcel" enctype="multipart/form-data" method="post">
+                    <div class="mb-3">
+                        <label for="file" class="form-label">Choose Excel File</label>
+                        <input type="file" name="file" id="file" accept=".xlsx, .xls" class="form-control" required />
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-success" onclick="return validateUpload();">Upload</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

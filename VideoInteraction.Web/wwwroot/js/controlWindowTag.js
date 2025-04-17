@@ -6,22 +6,19 @@ $(document).ready(function () {
 
 function loadDataTable() {
     dataTable = $('#tblData').DataTable({
-        "ajax": { url:'/measurementtag/getall'},
+        "ajax": { url:'/controlwindowtag/getall'},
         "columns": [
-            { data: 'displayOrder', "width": "10%" },
-            { data: 'measureTagName', "width": "15%" },
-            { data: 'tagDescription', "width": "10%" },
-            //{ data: 'createdTs', "width": "20%" },
+            { data: 'tagName', "width": "20%" },
+            { data: 'description', "width": "15%" },
+            { data: 'createdTs', "width": "20%" },
             { data: 'updatedTs', "width": "20%" },
-            { data: 'camera.name', "width": "10%" },
-            { data: 'measurementUnit.name', "width": "10%" },
-            { data: 'measurementPrefix.name', "width": "10%" },
+            { data: 'window.name', "width": "15%" },
             {
                 data: 'id',
                 "render": function (data) {
                     return `<div class="w-75 btn-group" role="group">
-                     <a href="/measurementtag/upsert?id=${data}" class="btn btn-primary mx-2"> <i class="bi bi-pencil-square"></i> Edit</a>               
-                     <a onClick=Delete('/measurementtag/delete/${data}') class="btn btn-danger mx-2"> <i class="bi bi-trash-fill"></i> Delete</a>
+                     <a href="/controlwindowtag/upsert?id=${data}" class="btn btn-primary mx-2"> <i class="bi bi-pencil-square"></i> Edit</a>
+                     <a onClick=Delete('/controlwindowtag/delete/${data}') class="btn btn-danger mx-2"> <i class="bi bi-trash-fill"></i> Delete</a>
                     </div>`
                 },
                 "width": "25%"

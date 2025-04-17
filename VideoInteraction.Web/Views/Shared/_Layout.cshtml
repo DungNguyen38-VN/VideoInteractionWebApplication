@@ -27,26 +27,8 @@
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">@_localization.Getkey("Home").Value</a>
                         </li>
-                        @if (User.IsInRole(SD.Role_Admin) || User.IsInRole(SD.Role_Customer))
-                        {
-                           @*  <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="Window" asp-action="Index">@_localization.Getkey("Window").Value</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="Camera" asp-action="Index">@_localization.Getkey("Camera").Value</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="CameraControlTag" asp-action="Index">@_localization.Getkey("CameraControlTag").Value</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="MeasurementTag" asp-action="Index">@_localization.Getkey("MeasurementTag").Value</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="MeasurementUnit" asp-action="Index">@_localization.Getkey("MeasurementUnit").Value</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="MeasurementPrefix" asp-action="Index">@_localization.Getkey("MeasurementPrefix").Value</a>
-                            </li> *@
+@*                         @if (User.IsInRole(SD.Role_Admin) || User.IsInRole(SD.Role_Customer))
+                        { *@
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     @_localization.Getkey("Camera").Value
@@ -61,7 +43,7 @@
                                     @_localization.Getkey("TagsConfiguration").Value
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                                    <li><a class="dropdown-item" asp-area="" asp-controller="CameraControlTag" asp-action="Index">@_localization.Getkey("CameraControlTag").Value</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="ControlWindowTag" asp-action="Index">@_localization.Getkey("ControlWindowTag").Value</a></li>
                                     <li><a class="dropdown-item" asp-area="" asp-controller="MeasurementTag" asp-action="Index">@_localization.Getkey("MeasurementTag").Value</a></li>
                                 </ul>
                             </li> 
@@ -74,8 +56,8 @@
                                     <li><a class="dropdown-item" asp-area="" asp-controller="MeasurementPrefix" asp-action="Index">@_localization.Getkey("MeasurementPrefix").Value</a></li>
                                 </ul>
                             </li>
-                        }
-
+                        @* }
+ *@
                     </ul>
                    
                     <partial name="_LoginPartial" />

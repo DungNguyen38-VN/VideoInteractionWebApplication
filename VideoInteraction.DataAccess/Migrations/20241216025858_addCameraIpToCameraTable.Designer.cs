@@ -12,8 +12,8 @@ using VideoInteraction.DataAccess.Data;
 namespace VideoInteraction.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240819025703_addRoleToUser")]
-    partial class addRoleToUser
+    [Migration("20241216025858_addCameraIpToCameraTable")]
+    partial class addCameraIpToCameraTable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -89,11 +89,6 @@ namespace VideoInteraction.DataAccess.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasMaxLength(21)
-                        .HasColumnType("nvarchar(21)");
-
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -145,10 +140,6 @@ namespace VideoInteraction.DataAccess.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
-
-                    b.HasDiscriminator().HasValue("IdentityUser");
-
-                    b.UseTphMappingStrategy();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -245,12 +236,18 @@ namespace VideoInteraction.DataAccess.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<string>("CameraIp")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("CreatedTs")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("L1ControlId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -260,32 +257,6 @@ namespace VideoInteraction.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Cameras");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CameraCode = "code12312001",
-                            CreatedTs = new DateTime(2024, 8, 19, 9, 57, 2, 795, DateTimeKind.Local).AddTicks(6006),
-                            Description = "",
-                            Name = "Cam01"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CameraCode = "code12312002",
-                            CreatedTs = new DateTime(2024, 8, 19, 9, 57, 2, 795, DateTimeKind.Local).AddTicks(6007),
-                            Description = "",
-                            Name = "Cam02"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CameraCode = "code12312003",
-                            CreatedTs = new DateTime(2024, 8, 19, 9, 57, 2, 795, DateTimeKind.Local).AddTicks(6009),
-                            Description = "",
-                            Name = "Cam03"
-                        });
                 });
 
             modelBuilder.Entity("VideoInteraction.Models.CameraControlTag", b =>
@@ -319,44 +290,38 @@ namespace VideoInteraction.DataAccess.Migrations
                     b.HasIndex("CameraId");
 
                     b.ToTable("CameraControlTags");
+                });
 
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CameraId = 1,
-                            CreatedTs = new DateTime(2024, 8, 19, 9, 57, 2, 795, DateTimeKind.Local).AddTicks(6112),
-                            Description = "tag1",
-                            TagName = "TDC_Com.TDC1.Tag1",
-                            UpdatedTs = new DateTime(2024, 8, 19, 9, 57, 2, 795, DateTimeKind.Local).AddTicks(6113)
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CameraId = 2,
-                            CreatedTs = new DateTime(2024, 8, 19, 9, 57, 2, 795, DateTimeKind.Local).AddTicks(6115),
-                            Description = "tag2",
-                            TagName = "TDC_Com.TDC1.Tag2",
-                            UpdatedTs = new DateTime(2024, 8, 19, 9, 57, 2, 795, DateTimeKind.Local).AddTicks(6115)
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CameraId = 3,
-                            CreatedTs = new DateTime(2024, 8, 19, 9, 57, 2, 795, DateTimeKind.Local).AddTicks(6117),
-                            Description = "tag3",
-                            TagName = "TDC_Com.TDC1.Tag3",
-                            UpdatedTs = new DateTime(2024, 8, 19, 9, 57, 2, 795, DateTimeKind.Local).AddTicks(6117)
-                        },
-                        new
-                        {
-                            Id = 4,
-                            CameraId = 4,
-                            CreatedTs = new DateTime(2024, 8, 19, 9, 57, 2, 795, DateTimeKind.Local).AddTicks(6119),
-                            Description = "tag4",
-                            TagName = "TDC_Com.TDC1.Tag4",
-                            UpdatedTs = new DateTime(2024, 8, 19, 9, 57, 2, 795, DateTimeKind.Local).AddTicks(6119)
-                        });
+            modelBuilder.Entity("VideoInteraction.Models.ControlWindowTag", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedTs")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TagName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime>("UpdatedTs")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("WindowId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("WindowId");
+
+                    b.ToTable("ControlWindowTags");
                 });
 
             modelBuilder.Entity("VideoInteraction.Models.MeasurementPrefix", b =>
@@ -377,7 +342,7 @@ namespace VideoInteraction.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("measurementPrefixes");
+                    b.ToTable("MeasurementPrefixes");
                 });
 
             modelBuilder.Entity("VideoInteraction.Models.MeasurementTag", b =>
@@ -481,21 +446,6 @@ namespace VideoInteraction.DataAccess.Migrations
                     b.ToTable("Windows");
                 });
 
-            modelBuilder.Entity("BulkyBook.Models.ApplicationUser", b =>
-                {
-                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Role")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasDiscriminator().HasValue("ApplicationUser");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -556,6 +506,17 @@ namespace VideoInteraction.DataAccess.Migrations
                         .IsRequired();
 
                     b.Navigation("Camera");
+                });
+
+            modelBuilder.Entity("VideoInteraction.Models.ControlWindowTag", b =>
+                {
+                    b.HasOne("VideoInteraction.Models.Window", "Window")
+                        .WithMany()
+                        .HasForeignKey("WindowId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Window");
                 });
 
             modelBuilder.Entity("VideoInteraction.Models.MeasurementTag", b =>

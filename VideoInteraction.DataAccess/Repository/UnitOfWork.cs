@@ -17,6 +17,7 @@ namespace VideoInteraction.DataAccess.Repository
         public IMeasurementUnitRepository MeasurementUnit { get; private set; }
         public IMeasurementPrefixRepository MeasurementPrefix { get; private set; }
         public IMeasurementTagRepository MeasurementTag { get; private set; }
+        public IControlWindowTagRepository ControlWindowTag { get; private set; }
         public UnitOfWork(ApplicationDbContext db)
         {
             _db = db;
@@ -26,6 +27,7 @@ namespace VideoInteraction.DataAccess.Repository
             MeasurementUnit = new MeasurementUnitRepository(_db);
             MeasurementPrefix = new MeasurementPrefixRepository(_db);
             MeasurementTag = new MeasurementTagRepository(_db);
+            ControlWindowTag = new ControlWindowTagRepository(_db);
         }
 
         public void Save()

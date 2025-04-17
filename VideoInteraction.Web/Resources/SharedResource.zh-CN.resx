@@ -240,4 +240,13 @@
   <data name="Register" xml:space="preserve">
     <value>注册</value>
   </data>
+  <data name="OPCTagControlWindowList" xml:space="preserve">
+    <value>OPC标签控制窗口列表</value>
+  </data>
+  <data name="L1ControlId" xml:space="preserve">
+    <value>一级控制相机ID</value>
+  </data>
+  <data name="ControlWindowTag" xml:space="preserve">
+    <value>OPC标签控制窗口</value>
+  </data>
 </root>

@@ -14,6 +14,7 @@ namespace VideoInteraction.DataAccess.Repository.IRepository
         IMeasurementUnitRepository MeasurementUnit { get; }
         IMeasurementPrefixRepository MeasurementPrefix { get; }
         IMeasurementTagRepository MeasurementTag { get; }
+        IControlWindowTagRepository ControlWindowTag { get; }
         void Save();
     }
 }

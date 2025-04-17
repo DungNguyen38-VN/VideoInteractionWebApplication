@@ -22,4 +22,7 @@
     <ProjectReference Include="..\VideoInteraction.Models\VideoInteraction.Models.csproj" />
     <ProjectReference Include="..\VideoInteraction.Utility\VideoInteraction.Utility.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
 </Project>

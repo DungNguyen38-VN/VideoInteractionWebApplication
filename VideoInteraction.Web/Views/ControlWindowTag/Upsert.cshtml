@@ -1,0 +1,86 @@
+﻿@model ControlWindowTagVM
+
+<div class="card shadow border-0 my-4">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-white py-2"> @(Model.ControlWindowTag.Id != 0 ? @_localization.Getkey("Update").Value : @_localization.Getkey("Create").Value) @_localization.Getkey("ControlWindowTag").Value</h2>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4">
+        <form method="post" class="row" enctype="multipart/form-data">
+            <input asp-for="ControlWindowTag.Id" hidden />
+
+            <div class="row">
+                <div class="col-10">
+                    <div class="border p-3">
+                        @*<div asp-validation-summary="ModelOnly"></div>*@
+                        <div class="form-floating py-2 col-12">
+                            <input asp-for="ControlWindowTag.TagName" class="form-control border-0 shadow" />
+                            <label asp-for="ControlWindowTag.TagName" class="ms-2">@_localization.Getkey("TagName").Value</label>
+                            <span asp-validation-for="ControlWindowTag.TagName" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating py-2 col-12">
+                            <label asp-for="ControlWindowTag.Description" class="ms-2 text-muted">@_localization.Getkey("Description").Value</label>
+                            <textarea asp-for="ControlWindowTag.Description" class="form-control border-0 shadow"></textarea>
+                        </div>
+@*                         <div class="form-floating py-2 col-12">
+                            <label asp-for="ControlWindowTag.CreatedTs" class="ms-2 text-muted"></label>
+                            <textarea asp-for="ControlWindowTag.CreatedTs" class="form-control border-0 shadow"></textarea>
+                        </div>
+                        <div class="form-floating py-2 col-12">
+                            <label asp-for="ControlWindowTag.UpdatedTs" class="ms-2 text-muted"></label>
+                            <textarea asp-for="ControlWindowTag.UpdatedTs" class="form-control border-0 shadow"></textarea>
+                        </div> *@
+                        <div class="form-floating py-2 col-12">
+                            <select asp-for="@Model.ControlWindowTag.WindowId" asp-items="@Model.WindowList" class="form-select border-0 shadow">
+                                <option disabled selected>--@_localization.Getkey("Select").Value @_localization.Getkey("Window").Value--</option>
+                            </select>
+                            <label asp-for="ControlWindowTag.WindowId" class="ms-2">@_localization.Getkey("Window").Value</label>
+                            <span asp-validation-for="ControlWindowTag.WindowId" class="text-danger"></span>
+                        </div>
+
+                        <div class="row pt-2">
+                            <div class="col-6 col-md-3">
+                                @if (Model.ControlWindowTag.Id != 0)
+                                {
+                                    <button type="submit" class="btn btn-primary form-control">@_localization.Getkey("Update").Value</button>
+                                }
+                                else
+                                {
+                                    <button type="submit" class="btn btn-primary form-control">@_localization.Getkey("Create").Value</button>
+                                }
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <a asp-controller="ControlWindowTag" asp-action="Index" class="btn btn-outline-primary border  form-control">
+                                    @_localization.Getkey("BacktoList").Value
+                                </a>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+
+
+
+@section Scripts {
+    @*     <script>
+        tinymce.init({
+            selector: 'textarea',
+            plugins: 'anchor autolink charmap codesample emoticons  lists   table visualblocks wordcount',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough |  align lineheight | numlist bullist indent outdent',
+        });
+    </script> *@
+
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

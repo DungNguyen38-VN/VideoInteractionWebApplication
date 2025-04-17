@@ -240,4 +240,13 @@
   <data name="Register" xml:space="preserve">
     <value>Register</value>
   </data>
+  <data name="OPCTagControlWindowList" xml:space="preserve">
+    <value>OPC Tag Control Window List</value>
+  </data>
+  <data name="L1ControlId" xml:space="preserve">
+    <value>L1 Control Id</value>
+  </data>
+  <data name="ControlWindowTag" xml:space="preserve">
+    <value>Control Window Tag</value>
+  </data>
 </root>
