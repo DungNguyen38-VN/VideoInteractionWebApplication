@@ -1,0 +1,100 @@
+﻿@model TvWallSceneVM
+
+<div class="card shadow border-0 mt-4">
+	<div class="card-header bg-secondary bg-gradient ml-0 py-3">
+		<div class="row">
+			<div class="col-12 text-center">
+				<h2 class="text-white py-2">@_localization.Getkey("TvWallSceneList").Value</h2>
+			</div>
+		</div>
+	</div>
+	<div class="card-body p-4">
+
+		<div class="row pb-3">
+			<div class="col-6"></div>
+			<div class="col-4 text-end">
+				<form method="get" asp-controller="TvWallScene" asp-action="Index" class="d-flex justify-content-end align-items-center">
+					<select class="form-select me-2" name="dlpId">
+						<option value="" selected="@(Model.SelectedDlpId == null ? "selected" : null)">
+							@_localization.Getkey("All_DLPs").Value
+						</option>
+						@foreach (var dlp in Model.Dlps)
+						{
+							<option value="@dlp.DlpId" selected="@(Model.SelectedDlpId == dlp.DlpId ? "selected" : null)">
+								@dlp.DlpName
+							</option>
+						}
+					</select>
+					<button type="submit" class="btn btn-outline-primary px-4 py-2 fw-bold">
+						<i class="bi bi-search"></i> @_localization.Getkey("Search").Value
+					</button>
+				</form>
+			</div>
+		</div>
+
+		<table class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<th>@_localization.Getkey("TvWallId").Value</th>
+					<th>@_localization.Getkey("SceneId").Value</th>
+					<th>@_localization.Getkey("SceneName").Value</th>
+					<th>@_localization.Getkey("IsDefault").Value</th>
+					<th>@_localization.Getkey("SceneOrder").Value</th>
+					<th>@_localization.Getkey("BelongDlpId").Value</th>
+					<th>@_localization.Getkey("DlpName").Value</th>
+					<th>@_localization.Getkey("IsDeviceScene").Value</th>
+					<th>@_localization.Getkey("GroupId").Value</th>
+					<th>@_localization.Getkey("IsCurrent").Value</th>
+					<th>@_localization.Getkey("IsActiveLinkage").Value</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var obj in Model.TvWallScenes.OrderBy(u => u.BelongDlpId).OrderBy(u=>u.SceneOrder))
+				{
+					var rowClass = obj.IsCurr ? "table-success" : "";
+					<tr class="@rowClass">
+						<td>@obj.TvWallId</td>
+						<td>@obj.SceneId</td>
+						<td>@obj.SceneName</td>
+						<td>@obj.IsDefault</td>
+						<td>@obj.SceneOrder</td>
+						<td>@obj.BelongDlpId</td>
+						<td>@obj.DlpName</td>
+						<td>@obj.IsDeviceScene</td>
+						<td>@obj.GroupId</td>
+						<td>@obj.IsCurr</td>
+						<td>@obj.IsActive</td>
+						<td>
+							<div class="w-95 btn-group" role="group">
+								@if (obj.IsActive)
+								{
+									<a asp-controller="TvWallScene"
+									   asp-action="LinkageInactive"
+									   asp-route-id="@obj.Id"
+									   asp-route-dlpId="@Model.SelectedDlpId"
+									   class="btn btn-secondary mx-2">
+										<i class="bi bi-toggle-off text-secondary"></i>
+										@_localization.Getkey("Inactive").Value
+									</a>
+								}
+								else
+								{
+									<a asp-controller="TvWallScene"
+									   asp-action="LinkageActive"
+									   asp-route-id="@obj.Id"
+									   asp-route-dlpId="@Model.SelectedDlpId"
+									   class="btn btn-primary mx-2">
+										<i class="bi bi-toggle-on text-success"></i>
+										@_localization.Getkey("Active").Value
+									</a>
+								}
+							</div>
+						</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+
+	</div>
+</div>

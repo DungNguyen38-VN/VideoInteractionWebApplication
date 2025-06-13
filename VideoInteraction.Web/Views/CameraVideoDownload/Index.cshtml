@@ -1,0 +1,89 @@
+﻿@using X.PagedList
+@using X.PagedList.Mvc.Core
+@model IPagedList<CameraVideoDownloadVM>
+
+<div class="card shadow border-0 mt-4">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-white py-2">@_localization.Getkey("CameraVideoDownloadList").Value</h2>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4">
+        <div class="row pb-3">
+            <div class="col-8">
+            </div>
+            <div class="col-4">
+            <form asp-action="Index" method="get" class="mb-3">
+                <div class="input-group">
+                    <input type="text" name="searchTerm" value="@ViewBag.SearchTerm" class="form-control" placeholder="摄像头代码或名称搜搜" />
+                    <button class="btn btn-primary" type="submit">Search</button>
+                </div>
+            </form>
+            </div>
+        </div>
+
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>@_localization.Getkey("CameraName").Value</th>
+                    
+                    <th>@_localization.Getkey("StartTime").Value</th>
+                    <th>@_localization.Getkey("EndTime").Value</th>
+                    <th>@_localization.Getkey("FileName").Value</th>                    
+                    <th>@_localization.Getkey("CreatedTs").Value</th>
+                    <th>@_localization.Getkey("DownloadStatus").Value</th>
+                    <th>@_localization.Getkey("VideoType").Value</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var obj in Model.OrderByDescending(u => u.CameraVideoDownload.Id))
+                {
+                    <tr>
+                        <td>@obj.CameraVideoDownload.Camera.Name</td>
+                        <td>@obj.CameraVideoDownload.StartTime</td>
+                        <td>@obj.CameraVideoDownload.EndTime</td>
+                        <td>@obj.CameraVideoDownload.FileName</td>
+                        <td>@obj.CameraVideoDownload.CreatedTs</td>
+                        <td>@obj.DownloadStatus</td>
+                        <td>@obj.CameraVideoDownload.Type</td>
+                        <td>
+                            <div class="w-95 btn-group" role="group">
+                                @if (obj.CameraVideoDownload.Flag == DownloadStatus.Completed)
+                                {
+                                    <a asp-controller="CameraVideoDownload" asp-action="LinkageVideoDir" asp-route-id="@obj.CameraVideoDownload.Id" class="btn btn-primary mx-2">
+                                        <i class="bi bi-toggle-on text-success"></i> @_localization.Getkey("DownloadToLocal").Value
+                                    </a>
+                                }
+                                else
+                                {
+                                    <button class="btn btn-secondary mx-2" disabled>
+                                        <i class="bi bi-toggle-off text-muted"></i> @_localization.Getkey("DownloadToLocal").Value
+                                    </button>
+                                }
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <div class="d-flex justify-content-end">
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page, searchTerm = ViewBag.SearchTerm }),
+            new PagedListRenderOptions
+            {
+                DisplayLinkToFirstPage = PagedListDisplayMode.Always,
+                DisplayLinkToLastPage = PagedListDisplayMode.Always,
+                DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+                DisplayLinkToNextPage = PagedListDisplayMode.Always,
+                DisplayEllipsesWhenNotShowingAllPageNumbers = true,
+                MaximumPageNumbersToDisplay = 5,
+                LiElementClasses = new[] { "page-item" },
+                PageClasses = new[] { "page-link" }
+            })
+        </div>
+
+    </div>
+</div>
+

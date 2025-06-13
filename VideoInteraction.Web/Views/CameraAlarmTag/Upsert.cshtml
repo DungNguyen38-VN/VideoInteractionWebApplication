@@ -1,0 +1,99 @@
+﻿@model CameraAlarmTagVM
+
+<div class="card shadow border-0 my-4">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-white py-2"> @(Model.CameraAlarmTag.Id != 0 ? @_localization.Getkey("Update").Value : @_localization.Getkey("Create").Value) @_localization.Getkey("CameraAlarmTag").Value</h2>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4">
+        <form method="post" class="row" enctype="multipart/form-data">
+            <input asp-for="CameraAlarmTag.Id" hidden />
+
+            <div class="row">
+                <div class="col-10">
+                    <div class="border p-3">
+                        @*<div asp-validation-summary="ModelOnly"></div>*@
+                        <div class="form-floating py-2 col-12">
+                            <input asp-for="CameraAlarmTag.TagName" class="form-control border-0 shadow" />
+                            <label asp-for="CameraAlarmTag.TagName" class="ms-2">@_localization.Getkey("TagName").Value</label>
+                            <span asp-validation-for="CameraAlarmTag.TagName" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating py-2 col-12">
+                            <label asp-for="CameraAlarmTag.Description" class="ms-2 text-muted">@_localization.Getkey("Description").Value</label>
+                            <textarea asp-for="CameraAlarmTag.Description" class="form-control border-0 shadow"></textarea>
+                        </div>
+                        <div class="form-floating py-2 col-12">
+                            <label asp-for="CameraAlarmTag.CreatedTs" class="ms-2 text-muted"></label>
+                            <textarea asp-for="CameraAlarmTag.CreatedTs" class="form-control border-0 shadow"></textarea>
+                        </div>
+@*                         <div class="form-floating py-2 col-12">
+                            <label asp-for="CameraAlarmTag.UpdatedTs" class="ms-2 text-muted"></label>
+                            <textarea asp-for="CameraAlarmTag.UpdatedTs" class="form-control border-0 shadow"></textarea>
+                        </div> *@
+                        <div class="form-floating py-2 col-12">
+                            <select asp-for="@Model.CameraAlarmTag.CameraId" asp-items="@Model.CameraList" class="form-select border-0 shadow">
+                                <option disabled selected>--@_localization.Getkey("Select").Value @_localization.Getkey("Camera").Value--</option>
+                            </select>
+                            <label asp-for="CameraAlarmTag.CameraId" class="ms-2">@_localization.Getkey("Camera").Value</label>
+                            <span asp-validation-for="CameraAlarmTag.CameraId" class="text-danger"></span>
+                        </div> 
+                        <div class="form-floating py-2 col-12">
+                            <select asp-for="@Model.CameraAlarmTag.AlarmMessageId" asp-items="@Model.AlarmMessageList" class="form-select border-0 shadow">
+                                <option disabled selected>--@_localization.Getkey("Select").Value @_localization.Getkey("AlarmMessage").Value--</option>
+                            </select>
+                            <label asp-for="CameraAlarmTag.AlarmMessageId" class="ms-2">@_localization.Getkey("AlarmMessage").Value</label>
+                            <span asp-validation-for="CameraAlarmTag.AlarmMessageId" class="text-danger"></span>
+                        </div>  
+                        <div class="form-floating py-2 col-12">
+                            <select asp-for="@Model.CameraAlarmTag.ShowStringParamId" asp-items="@Model.ShowStringParamList" class="form-select border-0 shadow">
+                                <option disabled selected>--@_localization.Getkey("Select").Value @_localization.Getkey("ShowStringParam").Value--</option>
+                            </select>
+                            <label asp-for="CameraAlarmTag.ShowStringParamId" class="ms-2">@_localization.Getkey("ShowStringParam").Value</label>
+                            <span asp-validation-for="CameraAlarmTag.ShowStringParamId" class="text-danger"></span>
+                        </div>
+                        <div class="row pt-2">
+                            <div class="col-6 col-md-3">
+                                @if (Model.CameraAlarmTag.Id != 0)
+                                {
+                                    <button type="submit" class="btn btn-primary form-control">@_localization.Getkey("Update").Value</button>
+                                }
+                                else
+                                {
+                                    <button type="submit" class="btn btn-primary form-control">@_localization.Getkey("Create").Value</button>
+                                }
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <a asp-controller="CameraAlarmTag" asp-action="Index" class="btn btn-outline-primary border  form-control">
+                                    @_localization.Getkey("BacktoList").Value
+                                </a>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+
+
+
+@section Scripts {
+    @*     <script>
+        tinymce.init({
+            selector: 'textarea',
+            plugins: 'anchor autolink charmap codesample emoticons  lists   table visualblocks wordcount',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough |  align lineheight | numlist bullist indent outdent',
+        });
+    </script> *@
+
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

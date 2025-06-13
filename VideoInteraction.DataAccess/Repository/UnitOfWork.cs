@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using VideoInteraction.DataAccess.Data;
 using VideoInteraction.DataAccess.Repository;
 using VideoInteraction.DataAccess.Repository.IRepository;
+using VideoInteraction.Models.HIK;
 namespace VideoInteraction.DataAccess.Repository
 {
     public class UnitOfWork : IUnitOfWork
@@ -17,6 +18,13 @@ namespace VideoInteraction.DataAccess.Repository
         public IMeasurementUnitRepository MeasurementUnit { get; private set; }
         public IMeasurementPrefixRepository MeasurementPrefix { get; private set; }
         public IMeasurementTagRepository MeasurementTag { get; private set; }
+        public IControlWindowTagRepository ControlWindowTag { get; private set; }
+        public IShowStringParamRepository ShowStringParam { get; private set; }
+        public IAlarmMessageRepository AlarmMessage { get; private set; }
+        public ICameraAlarmTagRepository CameraAlarmTag { get; private set; }
+        public ITvWallSceneRepository TvWallScene { get; private set; }
+        public ICameraVideoDownloadRepository CameraVideoDownload { get; private set; }
+        public IDlpRepository Dlp { get; private set; }
         public UnitOfWork(ApplicationDbContext db)
         {
             _db = db;
@@ -26,6 +34,13 @@ namespace VideoInteraction.DataAccess.Repository
             MeasurementUnit = new MeasurementUnitRepository(_db);
             MeasurementPrefix = new MeasurementPrefixRepository(_db);
             MeasurementTag = new MeasurementTagRepository(_db);
+            ControlWindowTag = new ControlWindowTagRepository(_db);
+            ShowStringParam = new ShowStringParamRepository(_db);
+            AlarmMessage = new AlarmMessageRepository(_db);
+            CameraAlarmTag= new CameraAlarmTagRepository(db);
+            TvWallScene= new TvWallSceneRepository(db);
+            CameraVideoDownload = new CameraVideoDownloadRepository(db);
+            Dlp = new DlpRepository(db);
         }
 
         public void Save()

@@ -21,5 +21,7 @@ namespace VideoInteraction.Models
         public string? Description { get; set; }
         public DateTime CreatedTs { get; set; }= DateTime.Now;
         public DateTime UpdatedTs { get; set; }= DateTime.Now;
+        [Required]
+        public int L1ControlId { get; set; }
     }
 }

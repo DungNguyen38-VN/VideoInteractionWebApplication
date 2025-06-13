@@ -31,5 +31,10 @@ namespace VideoInteraction.Models
         [ForeignKey("MeasurementPrefixId")]
         [ValidateNever]
         public MeasurementPrefix  MeasurementPrefix { get; set; }
+        public int? DecimalPoint { get; set; }
+        public int? ShowStringParamId { get; set; }
+        [ForeignKey("ShowStringParamId")]
+        [ValidateNever]
+        public ShowStringParam? ShowStringParam { get; set; }
     }
 }

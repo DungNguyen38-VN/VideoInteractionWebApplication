@@ -240,4 +240,163 @@
   <data name="Register" xml:space="preserve">
     <value>注册</value>
   </data>
+  <data name="OPCTagControlWindowList" xml:space="preserve">
+    <value>OPC标签控制窗口列表</value>
+  </data>
+  <data name="L1ControlId" xml:space="preserve">
+    <value>一级控制相机ID</value>
+  </data>
+  <data name="ControlWindowTag" xml:space="preserve">
+    <value>OPC标签控制窗口</value>
+  </data>
+  <data name="DecimalPoint" xml:space="preserve">
+    <value>小数点</value>
+  </data>
+  <data name="L1ControlWindowId" xml:space="preserve">
+    <value>一级控制窗口ID</value>
+  </data>
+  <data name="ShowStringParam" xml:space="preserve">
+    <value>坐标参数</value>
+  </data>
+  <data name="IsDisplay" xml:space="preserve">
+    <value>是否显示</value>
+  </data>
+  <data name="CreateNewShowStringParam" xml:space="preserve">
+    <value>创建字符坐标设置</value>
+  </data>
+  <data name="ShowStringParamName" xml:space="preserve">
+    <value>字符坐标</value>
+  </data>
+  <data name="IsShow" xml:space="preserve">
+    <value>是否显示</value>
+  </data>
+  <data name="IsActive" xml:space="preserve">
+    <value>是否启用？</value>
+  </data>
+  <data name="ShowStringParamList" xml:space="preserve">
+    <value>字符坐标参数设置清单</value>
+  </data>
+  <data name="DeleteShowStringParam" xml:space="preserve">
+    <value>删除字符坐标参数设置</value>
+  </data>
+  <data name="EditShowStringParam" xml:space="preserve">
+    <value>编辑字符坐标参数设置</value>
+  </data>
+  <data name="CreateNewAlarmMessage" xml:space="preserve">
+    <value>创建报警信息</value>
+  </data>
+  <data name="AlarmMessageName" xml:space="preserve">
+    <value>报警名称</value>
+  </data>
+  <data name="AlarmText" xml:space="preserve">
+    <value>报警信息</value>
+  </data>
+  <data name="DeleteAlarmMessage" xml:space="preserve">
+    <value>删除报警信息</value>
+  </data>
+  <data name="EditAlarmMessage" xml:space="preserve">
+    <value>编辑报警信息</value>
+  </data>
+  <data name="CameraAlarmTag" xml:space="preserve">
+    <value>摄像头报警</value>
+  </data>
+  <data name="AlarmMessage" xml:space="preserve">
+    <value>报警信息</value>
+  </data>
+  <data name="CameraAlarmTagList" xml:space="preserve">
+    <value>摄像头报警清单</value>
+  </data>
+  <data name="ImportExcel" xml:space="preserve">
+    <value>导入相机信息</value>
+  </data>
+  <data name="ImportUpdateExcel" xml:space="preserve">
+    <value>批量更新相机</value>
+  </data>
+  <data name="UpdateTvWallScene" xml:space="preserve">
+    <value>更新电视墙场景</value>
+  </data>
+  <data name="TvWallSceneList" xml:space="preserve">
+    <value>电视墙场景列表</value>
+  </data>
+  <data name="TvWallScene" xml:space="preserve">
+    <value>电视墙场景</value>
+  </data>
+  <data name="TvWall" xml:space="preserve">
+    <value>电视墙</value>
+  </data>
+  <data name="CameraVideoDownloadList" xml:space="preserve">
+    <value>录像下载清单</value>
+  </data>
+  <data name="CameraVideoDownload" xml:space="preserve">
+    <value>录像下载管理</value>
+  </data>
+  <data name="StartTime" xml:space="preserve">
+    <value>开始时间</value>
+  </data>
+  <data name="EndTime" xml:space="preserve">
+    <value>结束时间</value>
+  </data>
+  <data name="CreatedTs" xml:space="preserve">
+    <value>创建时间</value>
+  </data>
+  <data name="FileName" xml:space="preserve">
+    <value>录像名称</value>
+  </data>
+  <data name="OpenVideoDir" xml:space="preserve">
+    <value>打开录像</value>
+  </data>
+  <data name="SelectDlp" xml:space="preserve">
+    <value>选择电视墙</value>
+  </data>
+  <data name="All_DLPs" xml:space="preserve">
+    <value>所有电视墙</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>搜索</value>
+  </data>
+  <data name="TvWallId" xml:space="preserve">
+    <value>TvWallId</value>
+  </data>
+  <data name="SceneId" xml:space="preserve">
+    <value>场景ID</value>
+  </data>
+  <data name="SceneName" xml:space="preserve">
+    <value>场景名称</value>
+  </data>
+  <data name="DlpName" xml:space="preserve">
+    <value>电视墙名称</value>
+  </data>
+  <data name="IsCurrent" xml:space="preserve">
+    <value>当前上线？</value>
+  </data>
+  <data name="AlarmMessageList" xml:space="preserve">
+    <value>报警信息清单</value>
+  </data>
+  <data name="DownloadVideo" xml:space="preserve">
+    <value>下载录像</value>
+  </data>
+  <data name="BelongDlpId" xml:space="preserve">
+    <value>电视墙ID</value>
+  </data>
+  <data name="SceneOrder" xml:space="preserve">
+    <value>场景顺序</value>
+  </data>
+  <data name="Active" xml:space="preserve">
+    <value>启用</value>
+  </data>
+  <data name="Inactive" xml:space="preserve">
+    <value>停止</value>
+  </data>
+  <data name="IsAlarm" xml:space="preserve">
+    <value>是否报警</value>
+  </data>
+  <data name="DownloadToLocal" xml:space="preserve">
+    <value>本地保存</value>
+  </data>
+  <data name="TestAlarm" xml:space="preserve">
+    <value>测试报警</value>
+  </data>
+  <data name="IsActiveLinkage" xml:space="preserve">
+    <value>启用联动？</value>
+  </data>
 </root>

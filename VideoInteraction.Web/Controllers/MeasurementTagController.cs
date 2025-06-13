@@ -20,7 +20,7 @@ namespace VideoInteraction.Web.Controllers
         }
         public IActionResult Index() 
         {
-            List<MeasurementTag> objMeasurementTagList = _unitOfWork.MeasurementTag.GetAll(includeProperties: "Camera,MeasurementUnit,MeasurementPrefix").ToList();
+            List<MeasurementTag> objMeasurementTagList = _unitOfWork.MeasurementTag.GetAll(includeProperties: "Camera,ShowStringParam,MeasurementUnit,MeasurementPrefix").OrderBy(u=>u.CameraId).ToList();
             //List<MeasurementTag> objMeasurementTagList = _unitOfWork.MeasurementTag.GetAll().ToList();
             return View(objMeasurementTagList);
         }
@@ -34,6 +34,11 @@ namespace VideoInteraction.Web.Controllers
                     Text = u.Name,
                     Value = u.Id.ToString()
                 }),
+                ShowStringParamList = _unitOfWork.ShowStringParam.GetAll().Select(u => new SelectListItem
+                {
+                    Text = u.Name,
+                    Value = u.Id.ToString()
+                }), 
                 MeasurementUnitList = _unitOfWork.MeasurementUnit.GetAll().Select(u => new SelectListItem
                 {
                     Text = u.Name,
@@ -83,6 +88,11 @@ namespace VideoInteraction.Web.Controllers
                     Text = u.Name,
                     Value = u.Id.ToString()
                 }); 
+                MeasurementTagVM.ShowStringParamList = _unitOfWork.ShowStringParam.GetAll().Select(u => new SelectListItem
+                {
+                    Text = u.Name,
+                    Value = u.Id.ToString()
+                });   
                 MeasurementTagVM.MeasurementUnitList = _unitOfWork.MeasurementUnit.GetAll().Select(u => new SelectListItem
                 {
                     Text = u.Name,
@@ -103,7 +113,7 @@ namespace VideoInteraction.Web.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            List<MeasurementTag> objMeasurementTagList = _unitOfWork.MeasurementTag.GetAll(includeProperties: "Camera,MeasurementUnit,MeasurementPrefix").ToList();
+            List<MeasurementTag> objMeasurementTagList = _unitOfWork.MeasurementTag.GetAll(includeProperties: "Camera,ShowStringParam,MeasurementUnit,MeasurementPrefix").OrderBy(u => u.CameraId).ToList();
             return Json(new { data = objMeasurementTagList });
         }
 

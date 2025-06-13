@@ -1,137 +1,142 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Primetals VideoInteraction CoC Web</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/VideoInteraction.Web.styles.css" asp-append-version="true" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>@ViewData["Title"] Primetals VideoInteraction CoC Web</title>
 
-    @* <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" /> *@
-    <link rel="stylesheet" href="//cdn.datatables.net/1.13.3/css/jquery.dataTables.min.css" />
+	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+	<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+	<link rel="stylesheet" href="~/css/css2.css" asp-append-version="true" />
+	<link rel="stylesheet" href="~/lib/bootstrap-icons/bootstrap-icons.css" />
+	<link rel="stylesheet" href="~/lib/toastr/toastr.min.css" />
+	<link rel="stylesheet" href="~/lib/datatables/jquery.dataTables.min.css" c />
+	<link href="~/lib/sweetalert2/sweetalert2.min.css" rel="stylesheet" />
+
+	<link rel="stylesheet" href="~/VideoInteraction.Web.styles.css" asp-append-version="true" />
+	<style>
+		.navbar-brand {
+			margin: 0 !important;
+			padding: 0 !important;
+			display: flex;
+			align-items: center;
+		}
+
+		.navbar-logo {
+			height: 70px; /* hoặc bạn có thể dùng tỷ lệ phần trăm nếu muốn: height: 50%; */
+			margin: 0 !important;
+			padding: 0 !important;
+			display: block;
+			object-fit: contain;
+		}
+	</style>
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-primary border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Video Interaction CoC</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">@_localization.Getkey("Home").Value</a>
-                        </li>
-                        @if (User.IsInRole(SD.Role_Admin) || User.IsInRole(SD.Role_Customer))
-                        {
-                           @*  <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="Window" asp-action="Index">@_localization.Getkey("Window").Value</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="Camera" asp-action="Index">@_localization.Getkey("Camera").Value</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="CameraControlTag" asp-action="Index">@_localization.Getkey("CameraControlTag").Value</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="MeasurementTag" asp-action="Index">@_localization.Getkey("MeasurementTag").Value</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="MeasurementUnit" asp-action="Index">@_localization.Getkey("MeasurementUnit").Value</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="MeasurementPrefix" asp-action="Index">@_localization.Getkey("MeasurementPrefix").Value</a>
-                            </li> *@
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    @_localization.Getkey("Camera").Value
-                                </a>
-                                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                                    <li><a class="dropdown-item" asp-area="" asp-controller="Camera" asp-action="Index">@_localization.Getkey("Camera").Value</a></li>
-                                    <li><a class="dropdown-item" asp-area="" asp-controller="Window" asp-action="Index">@_localization.Getkey("Window").Value</a></li>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    @_localization.Getkey("TagsConfiguration").Value
-                                </a>
-                                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                                    <li><a class="dropdown-item" asp-area="" asp-controller="CameraControlTag" asp-action="Index">@_localization.Getkey("CameraControlTag").Value</a></li>
-                                    <li><a class="dropdown-item" asp-area="" asp-controller="MeasurementTag" asp-action="Index">@_localization.Getkey("MeasurementTag").Value</a></li>
-                                </ul>
-                            </li> 
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    @_localization.Getkey("MeasurementDisplay").Value
-                                </a>
-                                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                                    <li><a class="dropdown-item" asp-area="" asp-controller="MeasurementUnit" asp-action="Index">@_localization.Getkey("MeasurementUnit").Value</a></li>
-                                    <li><a class="dropdown-item" asp-area="" asp-controller="MeasurementPrefix" asp-action="Index">@_localization.Getkey("MeasurementPrefix").Value</a></li>
-                                </ul>
-                            </li>
-                        }
+	<header>
+		<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-primary border-bottom box-shadow mb-3">
+			<div class="container-fluid">
+				<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+					<img src="/images/Prim_Primetals_brdmk_RGB.jpg" class="navbar-logo" alt="Logo" />
+				</a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+						aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="navbar-collapse collapse d-sm-inline-flex justify-content-between ms-4">
+					<ul class="navbar-nav flex-grow-1">
+						@*                         @if (User.IsInRole(SD.Role_Admin) || User.IsInRole(SD.Role_Customer))
+                        { *@
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								@_localization.Getkey("Camera").Value
+							</a>
+							<ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+								<li><a class="dropdown-item" asp-area="" asp-controller="Camera" asp-action="Index">@_localization.Getkey("Camera").Value</a></li>
+								<li><a class="dropdown-item" asp-area="" asp-controller="Window" asp-action="Index">@_localization.Getkey("Window").Value</a></li>
+								@* <li><a class="dropdown-item" asp-area="" asp-controller="CameraAlarmTag" asp-action="Index">@_localization.Getkey("CameraAlarmTag").Value</a></li> *@
+								<li><a class="dropdown-item" asp-area="" asp-controller="CameraVideoDownload" asp-action="Index">@_localization.Getkey("CameraVideoDownload").Value</a></li>
+							</ul>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								@_localization.Getkey("TvWall").Value
+							</a>
+							<ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+								<li><a class="dropdown-item" asp-area="" asp-controller="TvWallScene" asp-action="Index">@_localization.Getkey("TvWallScene").Value</a></li>
+							</ul>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								@_localization.Getkey("TagsConfiguration").Value
+							</a>
+							<ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+								<li><a class="dropdown-item" asp-area="" asp-controller="ControlWindowTag" asp-action="Index">@_localization.Getkey("ControlWindowTag").Value</a></li>
+								<li><a class="dropdown-item" asp-area="" asp-controller="MeasurementTag" asp-action="Index">@_localization.Getkey("MeasurementTag").Value</a></li>
+								<li><a class="dropdown-item" asp-area="" asp-controller="ShowStringParam" asp-action="Index">@_localization.Getkey("ShowStringParam").Value</a></li>
+								<li><a class="dropdown-item" asp-area="" asp-controller="AlarmMessage" asp-action="Index">@_localization.Getkey("AlarmMessage").Value</a></li>
+							</ul>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								@_localization.Getkey("MeasurementDisplay").Value
+							</a>
+							<ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+								<li><a class="dropdown-item" asp-area="" asp-controller="MeasurementUnit" asp-action="Index">@_localization.Getkey("MeasurementUnit").Value</a></li>
+								<li><a class="dropdown-item" asp-area="" asp-controller="MeasurementPrefix" asp-action="Index">@_localization.Getkey("MeasurementPrefix").Value</a></li>
+							</ul>
+						</li>
+						@* }
+ *@
+					</ul>
 
-                    </ul>
-                   
-                    <partial name="_LoginPartial" />
-                    <div>
-                        <ul class="navbar-nav text-end">
-                            <a class="nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                @if (Thread.CurrentThread.CurrentCulture.ToString() == "en-US")
-                                {
-                                    <span>
-                                        English
-                                    </span>
-                                }
-                                else
-                                {
-                                    <span>
-                                        Chinese
-                                    </span>
-                                }
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="en-US">English</a></li>
-                                <li><a class="dropdown-item" asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="zh-CN">Chinese</a></li>
-                            </ul>
-                        </ul>
-                    </div>
+					@* <partial name="_LoginPartial" /> *@
+					<div>
+						<ul class="navbar-nav text-end">
+							<a class="nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								@if (Thread.CurrentThread.CurrentCulture.ToString() == "en-US")
+								{
+									<span>
+										English
+									</span>
+								}
+								else
+								{
+									<span>
+										Chinese
+									</span>
+								}
+							</a>
+							<ul class="dropdown-menu dropdown-menu-end">
+								<li><a class="dropdown-item" asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="en-US">English</a></li>
+								<li><a class="dropdown-item" asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="zh-CN">Chinese</a></li>
+							</ul>
+						</ul>
+					</div>
 
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            <partial name="_Notification" />
-            @RenderBody()
-        </main>
-    </div>
+				</div>
+			</div>
+		</nav>
 
-    <footer class="border-top footer bg-primary text-white ">
-        <div class="container">
-            &copy; 2024 - VideoInteraction Website- Designed by <i class="bi bi-heart-fill"></i> Primetals China
-        </div>
-    </footer>
-    @*     <footer class="border-top footer bg-primary text-muted ">
-    <div class="text-center">
-    Made with <i class="bi bi-heart-fill"></i> by DotNetMastery
-    </div>
-    </footer> *@
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="//cdn.datatables.net/1.13.3/js/jquery.dataTables.min.js" asp-append-version="true"></script>
+	</header>
+	<div class="container">
+		<main role="main" class="pb-3">
+			<partial name="_Notification" />
+			@RenderBody()
+		</main>
+	</div>
 
-    <script src="https://cdn.tiny.cloud/1/g28lhnxtlihu4l4a381gw7tz47voznshwbi10lmsvlekrfme/tinymce/6/tinymce.min.js" referrerpolicy="origin">
-        <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script></script>
-    @await RenderSectionAsync("Scripts", required: false)
+	<footer class="border-top footer bg-primary text-white ">
+		<div class="container">
+			&copy; @DateTime.Now.Year - VideoInteraction Website - Designed by <i class="bi bi-heart-fill"></i> Primetals China
+		</div>
+
+	</footer>
+	<script src="~/lib/jquery/dist/jquery.min.js"></script>
+	<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="~/js/site.js" asp-append-version="true"></script>
+	<script src="~/lib/toastr/toastr.min.js"></script>
+	<script src="~/lib/datatables/jquery.dataTables.min.js"></script>
+	<script src="~/lib/sweetalert2/sweetalert2.min.js"></script>
+	@await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

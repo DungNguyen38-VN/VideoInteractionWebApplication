@@ -26,6 +26,11 @@
                     <input asp-for="WndUrl" class="form-control border-0 shadow" />
                     <label asp-for="WndUrl" class="ms-2">@_localization.Getkey("WindowURL").Value</label>
                     <span asp-validation-for="WndUrl" class="text-danger"></span>
+                </div>  
+                <div class="form-floating py-2 col-12">
+                    <input asp-for="L1ControlId" class="form-control border-0 shadow" />
+                    <label asp-for="L1ControlId" class="ms-2">@_localization.Getkey("L1ControlWindowId").Value</label>
+                    <span asp-validation-for="L1ControlId" class="text-danger"></span>
                 </div>   
                 <div class="form-floating py-2 col-12">
                     <input asp-for="Description" class="form-control border-0 shadow" />

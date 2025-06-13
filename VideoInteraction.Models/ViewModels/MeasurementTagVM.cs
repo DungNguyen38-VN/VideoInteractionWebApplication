@@ -15,6 +15,8 @@ namespace VideoInteraction.Models.ViewModels
         [ValidateNever]
         public IEnumerable<SelectListItem> CameraList { get; set; }
         [ValidateNever]
+        public IEnumerable<SelectListItem> ShowStringParamList { get; set; } 
+        [ValidateNever]  
         public IEnumerable<SelectListItem> MeasurementUnitList { get; set; } 
         [ValidateNever]
         public IEnumerable<SelectListItem> MeasurementPrefixList { get; set; }

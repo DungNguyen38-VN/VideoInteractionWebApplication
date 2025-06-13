@@ -14,6 +14,13 @@ namespace VideoInteraction.DataAccess.Repository.IRepository
         IMeasurementUnitRepository MeasurementUnit { get; }
         IMeasurementPrefixRepository MeasurementPrefix { get; }
         IMeasurementTagRepository MeasurementTag { get; }
+        IControlWindowTagRepository ControlWindowTag { get; }
+        IShowStringParamRepository ShowStringParam { get; }
+        IAlarmMessageRepository AlarmMessage { get; }
+        ICameraAlarmTagRepository CameraAlarmTag { get; }
+        ITvWallSceneRepository TvWallScene { get; }
+        ICameraVideoDownloadRepository CameraVideoDownload { get; }
+        IDlpRepository Dlp { get; }
         void Save();
     }
 }

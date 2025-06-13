@@ -86,11 +86,6 @@ namespace VideoInteraction.DataAccess.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasMaxLength(21)
-                        .HasColumnType("nvarchar(21)");
-
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -142,10 +137,6 @@ namespace VideoInteraction.DataAccess.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
-
-                    b.HasDiscriminator().HasValue("IdentityUser");
-
-                    b.UseTphMappingStrategy();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -229,6 +220,31 @@ namespace VideoInteraction.DataAccess.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("VideoInteraction.Models.AlarmMessage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AlarmText")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime>("CreatedTs")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AlarmMessages");
+                });
+
             modelBuilder.Entity("VideoInteraction.Models.Camera", b =>
                 {
                     b.Property<int>("Id")
@@ -242,6 +258,48 @@ namespace VideoInteraction.DataAccess.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<string>("CameraIp")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedTs")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("L1ControlId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int?>("ShowStringParamId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ShowStringParamId");
+
+                    b.ToTable("Cameras");
+                });
+
+            modelBuilder.Entity("VideoInteraction.Models.CameraAlarmTag", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("AlarmMessageId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CameraId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("CreatedTs")
                         .HasColumnType("datetime2");
 
@@ -249,40 +307,26 @@ namespace VideoInteraction.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Name")
+                    b.Property<int?>("ShowStringParamId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("TagName")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime>("UpdatedTs")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Cameras");
+                    b.HasIndex("AlarmMessageId");
 
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CameraCode = "code12312001",
-                            CreatedTs = new DateTime(2024, 8, 19, 10, 5, 40, 953, DateTimeKind.Local).AddTicks(1425),
-                            Description = "",
-                            Name = "Cam01"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CameraCode = "code12312002",
-                            CreatedTs = new DateTime(2024, 8, 19, 10, 5, 40, 953, DateTimeKind.Local).AddTicks(1426),
-                            Description = "",
-                            Name = "Cam02"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CameraCode = "code12312003",
-                            CreatedTs = new DateTime(2024, 8, 19, 10, 5, 40, 953, DateTimeKind.Local).AddTicks(1428),
-                            Description = "",
-                            Name = "Cam03"
-                        });
+                    b.HasIndex("CameraId");
+
+                    b.HasIndex("ShowStringParamId");
+
+                    b.ToTable("CameraAlarmTags");
                 });
 
             modelBuilder.Entity("VideoInteraction.Models.CameraControlTag", b =>
@@ -316,44 +360,373 @@ namespace VideoInteraction.DataAccess.Migrations
                     b.HasIndex("CameraId");
 
                     b.ToTable("CameraControlTags");
+                });
 
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CameraId = 1,
-                            CreatedTs = new DateTime(2024, 8, 19, 10, 5, 40, 953, DateTimeKind.Local).AddTicks(1523),
-                            Description = "tag1",
-                            TagName = "TDC_Com.TDC1.Tag1",
-                            UpdatedTs = new DateTime(2024, 8, 19, 10, 5, 40, 953, DateTimeKind.Local).AddTicks(1523)
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CameraId = 2,
-                            CreatedTs = new DateTime(2024, 8, 19, 10, 5, 40, 953, DateTimeKind.Local).AddTicks(1525),
-                            Description = "tag2",
-                            TagName = "TDC_Com.TDC1.Tag2",
-                            UpdatedTs = new DateTime(2024, 8, 19, 10, 5, 40, 953, DateTimeKind.Local).AddTicks(1526)
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CameraId = 3,
-                            CreatedTs = new DateTime(2024, 8, 19, 10, 5, 40, 953, DateTimeKind.Local).AddTicks(1527),
-                            Description = "tag3",
-                            TagName = "TDC_Com.TDC1.Tag3",
-                            UpdatedTs = new DateTime(2024, 8, 19, 10, 5, 40, 953, DateTimeKind.Local).AddTicks(1528)
-                        },
-                        new
-                        {
-                            Id = 4,
-                            CameraId = 4,
-                            CreatedTs = new DateTime(2024, 8, 19, 10, 5, 40, 953, DateTimeKind.Local).AddTicks(1529),
-                            Description = "tag4",
-                            TagName = "TDC_Com.TDC1.Tag4",
-                            UpdatedTs = new DateTime(2024, 8, 19, 10, 5, 40, 953, DateTimeKind.Local).AddTicks(1529)
-                        });
+            modelBuilder.Entity("VideoInteraction.Models.CameraVideoDownload", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CameraId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedTs")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("EndTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("FileName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Flag")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime>("StartTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("Type")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CameraId");
+
+                    b.ToTable("CameraVideoDownloads", (string)null);
+                });
+
+            modelBuilder.Entity("VideoInteraction.Models.ControlWindowTag", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedTs")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsAlarm")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDisplay")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("TagName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime>("UpdatedTs")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("WindowId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("WindowId");
+
+                    b.ToTable("ControlWindowTags");
+                });
+
+            modelBuilder.Entity("VideoInteraction.Models.HIK.Dlp", b =>
+                {
+                    b.Property<int>("DlpId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DlpId"));
+
+                    b.Property<int>("AttachedDeviceNum")
+                        .HasColumnType("int");
+
+                    b.Property<string>("BelongTvwallIndexcode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Col")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CurSceneId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CurSceneName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("DecoderId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("DlpName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("DlpType")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Expection")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("IndexCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("LayoutModified")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("Order")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Row")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TvWallId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("VirtualSplitCol")
+                        .HasColumnType("int");
+
+                    b.Property<int>("VirtualSplitRow")
+                        .HasColumnType("int");
+
+                    b.Property<int>("VirtualSplitType")
+                        .HasColumnType("int");
+
+                    b.HasKey("DlpId");
+
+                    b.HasIndex("TvWallId");
+
+                    b.ToTable("Dlp", "hik");
+                });
+
+            modelBuilder.Entity("VideoInteraction.Models.HIK.FloatWnd", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AttachedUri")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("DecoderId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DevId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DeviceWallNo")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DlpCol")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DlpId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DlpRow")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Enlarged")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("FullLarged")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("Height")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsJoint")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("Layer")
+                        .HasColumnType("int");
+
+                    b.Property<string>("LedWndIndexcode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Left")
+                        .HasColumnType("int");
+
+                    b.Property<int>("LockStatus")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OpenwndMode")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SubwndNum")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Top")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Uri")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Width")
+                        .HasColumnType("int");
+
+                    b.Property<int>("WndId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Wndpos")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DlpId");
+
+                    b.ToTable("FloatWnd", "hik");
+                });
+
+            modelBuilder.Entity("VideoInteraction.Models.HIK.Group", b =>
+                {
+                    b.Property<int>("GroupId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("GroupId"));
+
+                    b.Property<int>("BelongDlpId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("GroupName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("GroupId");
+
+                    b.HasIndex("BelongDlpId");
+
+                    b.ToTable("Group", "hik");
+                });
+
+            modelBuilder.Entity("VideoInteraction.Models.HIK.Monitor", b =>
+                {
+                    b.Property<int>("OutputId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OutputId"));
+
+                    b.Property<int>("DlpCol")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DlpId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DlpRow")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Index")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Joint")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("MonitorName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Pos")
+                        .HasColumnType("int");
+
+                    b.HasKey("OutputId");
+
+                    b.HasIndex("DlpId");
+
+                    b.ToTable("Monitor", "hik");
+                });
+
+            modelBuilder.Entity("VideoInteraction.Models.HIK.TvWall", b =>
+                {
+                    b.Property<int>("TvWallId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TvWallId"));
+
+                    b.Property<string>("IndexCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TvWallName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("TvWallId");
+
+                    b.ToTable("TvWall", "hik");
+                });
+
+            modelBuilder.Entity("VideoInteraction.Models.HIK.Wnd", b =>
+                {
+                    b.Property<int>("WndId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("WndId"));
+
+                    b.Property<bool>("Audio")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("DecodeChannel")
+                        .HasColumnType("int");
+
+                    b.Property<int>("EnableSmartRule")
+                        .HasColumnType("int");
+
+                    b.Property<int>("FloatWndId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("NetZone")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RotateDegree")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("ShowLogo")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Uri")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("VirtualId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("WndUri")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Zoom")
+                        .HasColumnType("bit");
+
+                    b.HasKey("WndId");
+
+                    b.HasIndex("FloatWndId");
+
+                    b.ToTable("Wnd", "hik");
                 });
 
             modelBuilder.Entity("VideoInteraction.Models.MeasurementPrefix", b =>
@@ -391,6 +764,9 @@ namespace VideoInteraction.DataAccess.Migrations
                     b.Property<DateTime>("CreatedTs")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("DecimalPoint")
+                        .HasColumnType("int");
+
                     b.Property<int>("DisplayOrder")
                         .HasColumnType("int");
 
@@ -403,6 +779,9 @@ namespace VideoInteraction.DataAccess.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("MeasurementUnitId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ShowStringParamId")
                         .HasColumnType("int");
 
                     b.Property<string>("TagDescription")
@@ -419,6 +798,8 @@ namespace VideoInteraction.DataAccess.Migrations
 
                     b.HasIndex("MeasurementUnitId");
 
+                    b.HasIndex("ShowStringParamId");
+
                     b.ToTable("MeasurementTags");
                 });
 
@@ -434,13 +815,93 @@ namespace VideoInteraction.DataAccess.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Id");
 
                     b.ToTable("MeasurementUnits");
+                });
+
+            modelBuilder.Entity("VideoInteraction.Models.ShowStringParam", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedTs")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsShow")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("XPos")
+                        .HasColumnType("int");
+
+                    b.Property<int>("YPos")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ShowStringParams");
+                });
+
+            modelBuilder.Entity("VideoInteraction.Models.TvWallScene", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("BelongDlpId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("GroupId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsCurr")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDefault")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeviceScene")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("SceneId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SceneName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<int>("SceneOrder")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TvWallId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TvWallScenes", (string)null);
                 });
 
             modelBuilder.Entity("VideoInteraction.Models.Window", b =>
@@ -456,6 +917,9 @@ namespace VideoInteraction.DataAccess.Migrations
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("L1ControlId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -476,21 +940,6 @@ namespace VideoInteraction.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Windows");
-                });
-
-            modelBuilder.Entity("BulkyBook.Models.ApplicationUser", b =>
-                {
-                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Role")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasDiscriminator().HasValue("ApplicationUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -544,6 +993,40 @@ namespace VideoInteraction.DataAccess.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("VideoInteraction.Models.Camera", b =>
+                {
+                    b.HasOne("VideoInteraction.Models.ShowStringParam", "ShowStringParam")
+                        .WithMany()
+                        .HasForeignKey("ShowStringParamId");
+
+                    b.Navigation("ShowStringParam");
+                });
+
+            modelBuilder.Entity("VideoInteraction.Models.CameraAlarmTag", b =>
+                {
+                    b.HasOne("VideoInteraction.Models.AlarmMessage", "AlarmMessage")
+                        .WithMany()
+                        .HasForeignKey("AlarmMessageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("VideoInteraction.Models.Camera", "Camera")
+                        .WithMany()
+                        .HasForeignKey("CameraId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("VideoInteraction.Models.ShowStringParam", "ShowStringParam")
+                        .WithMany()
+                        .HasForeignKey("ShowStringParamId");
+
+                    b.Navigation("AlarmMessage");
+
+                    b.Navigation("Camera");
+
+                    b.Navigation("ShowStringParam");
+                });
+
             modelBuilder.Entity("VideoInteraction.Models.CameraControlTag", b =>
                 {
                     b.HasOne("VideoInteraction.Models.Camera", "Camera")
@@ -553,6 +1036,83 @@ namespace VideoInteraction.DataAccess.Migrations
                         .IsRequired();
 
                     b.Navigation("Camera");
+                });
+
+            modelBuilder.Entity("VideoInteraction.Models.CameraVideoDownload", b =>
+                {
+                    b.HasOne("VideoInteraction.Models.Camera", "Camera")
+                        .WithMany()
+                        .HasForeignKey("CameraId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Camera");
+                });
+
+            modelBuilder.Entity("VideoInteraction.Models.ControlWindowTag", b =>
+                {
+                    b.HasOne("VideoInteraction.Models.Window", "Window")
+                        .WithMany()
+                        .HasForeignKey("WindowId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Window");
+                });
+
+            modelBuilder.Entity("VideoInteraction.Models.HIK.Dlp", b =>
+                {
+                    b.HasOne("VideoInteraction.Models.HIK.TvWall", "TvWall")
+                        .WithMany("Dlps")
+                        .HasForeignKey("TvWallId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("TvWall");
+                });
+
+            modelBuilder.Entity("VideoInteraction.Models.HIK.FloatWnd", b =>
+                {
+                    b.HasOne("VideoInteraction.Models.HIK.Dlp", "Dlp")
+                        .WithMany("FloatWnds")
+                        .HasForeignKey("DlpId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Dlp");
+                });
+
+            modelBuilder.Entity("VideoInteraction.Models.HIK.Group", b =>
+                {
+                    b.HasOne("VideoInteraction.Models.HIK.Dlp", "Dlp")
+                        .WithMany("Groups")
+                        .HasForeignKey("BelongDlpId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Dlp");
+                });
+
+            modelBuilder.Entity("VideoInteraction.Models.HIK.Monitor", b =>
+                {
+                    b.HasOne("VideoInteraction.Models.HIK.Dlp", "Dlp")
+                        .WithMany("Monitors")
+                        .HasForeignKey("DlpId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Dlp");
+                });
+
+            modelBuilder.Entity("VideoInteraction.Models.HIK.Wnd", b =>
+                {
+                    b.HasOne("VideoInteraction.Models.HIK.FloatWnd", "FloatWnd")
+                        .WithMany("WndList")
+                        .HasForeignKey("FloatWndId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("FloatWnd");
                 });
 
             modelBuilder.Entity("VideoInteraction.Models.MeasurementTag", b =>
@@ -575,11 +1135,36 @@ namespace VideoInteraction.DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("VideoInteraction.Models.ShowStringParam", "ShowStringParam")
+                        .WithMany()
+                        .HasForeignKey("ShowStringParamId");
+
                     b.Navigation("Camera");
 
                     b.Navigation("MeasurementPrefix");
 
                     b.Navigation("MeasurementUnit");
+
+                    b.Navigation("ShowStringParam");
+                });
+
+            modelBuilder.Entity("VideoInteraction.Models.HIK.Dlp", b =>
+                {
+                    b.Navigation("FloatWnds");
+
+                    b.Navigation("Groups");
+
+                    b.Navigation("Monitors");
+                });
+
+            modelBuilder.Entity("VideoInteraction.Models.HIK.FloatWnd", b =>
+                {
+                    b.Navigation("WndList");
+                });
+
+            modelBuilder.Entity("VideoInteraction.Models.HIK.TvWall", b =>
+                {
+                    b.Navigation("Dlps");
                 });
 #pragma warning restore 612, 618
         }

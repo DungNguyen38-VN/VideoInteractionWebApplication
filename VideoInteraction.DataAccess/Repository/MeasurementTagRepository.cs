@@ -28,8 +28,10 @@ namespace VideoInteraction.DataAccess.Repository
                 objFromDb.MeasureTagName = obj.MeasureTagName;
                 objFromDb.TagDescription = obj.TagDescription;
                 objFromDb.CameraId = obj.CameraId;
+                objFromDb.ShowStringParamId = obj.ShowStringParamId;
                 objFromDb.MeasurementUnitId = obj.MeasurementUnitId;
                 objFromDb.MeasurementPrefixId = obj.MeasurementPrefixId;
+                objFromDb.DecimalPoint = obj.DecimalPoint;
                 objFromDb.UpdatedTs = DateTime.Now;
             }
         }

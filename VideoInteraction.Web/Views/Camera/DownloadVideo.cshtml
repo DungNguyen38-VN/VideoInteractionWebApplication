@@ -1,0 +1,94 @@
+﻿@model Camera
+@{
+    var now = DateTime.Now.ToString("yyyy-MM-ddTHH:mm");
+    var startTime = DateTime.Now.AddMinutes(-5).ToString("yyyy-MM-ddTHH:mm");
+}
+
+<div class="card shadow border-0 mt-4">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-white py-2">@_localization.Getkey("CameraVideoDownload").Value</h2>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4">
+        <form method="post">
+            <input asp-for="Id" hidden />
+            <div class="border p-3 mt-4">
+
+                <div class="form-floating py-2 col-12">
+                    <input asp-for="Name" class="form-control border-0 shadow" />
+                    <label asp-for="Name" class="ms-2">@_localization.Getkey("CameraName").Value</label>
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+
+                <div class="form-floating py-2 col-12">
+                    <input asp-for="CameraCode" class="form-control border-0 shadow" />
+                    <label asp-for="CameraCode" class="ms-2">@_localization.Getkey("CameraCode").Value</label>
+                    <span asp-validation-for="CameraCode" class="text-danger"></span>
+                </div>
+                <div class="form-floating py-2 col-12">
+                    <input asp-for="CameraIp" class="form-control border-0 shadow" />
+                    <label asp-for="CameraIp" class="ms-2">@_localization.Getkey("IP").Value</label>
+                </div>
+                <div class="form-floating py-2 col-12">
+                    <input asp-for="L1ControlId" class="form-control border-0 shadow" />
+                    <label asp-for="L1ControlId" class="ms-2">@_localization.Getkey("L1ControlId").Value</label>
+                    <span asp-validation-for="L1ControlId" class="text-danger"></span>
+                </div>
+
+                <!-- Start Time -->
+                <div class="form-floating py-2 col-12">
+                    <input type="datetime-local" name="StartTime" id="StartTime"
+                           class="form-control border-0 shadow"
+                           value="@startTime"
+                           max="@now" />
+                    <label for="StartTime">Start Time</label>
+                </div>
+
+                <!-- End Time -->
+                <div class="form-floating py-2 col-12">
+                    <input type="datetime-local" name="EndTime" id="EndTime"
+                           class="form-control border-0 shadow"
+                           value="@now"
+                           max="@now" />
+                    <label for="EndTime">End Time</label>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-6 col-md-3">
+                        <button type="submit" class="btn btn-primary form-control">Start Download</button>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <a asp-controller="Camera" asp-action="Index" class="btn btn-secondary border  form-control">
+                            @_localization.Getkey("BacktoList").Value
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+
+    <script>
+        document.querySelector('form').addEventListener('submit', function (e) {
+            const start = new Date(document.getElementById('StartTime').value);
+            const end = new Date(document.getElementById('EndTime').value);
+            const now = new Date();
+
+            if (end > now) {
+                alert("End time cannot be in the future.");
+                e.preventDefault();
+            } else if (start >= end) {
+                alert("Start time must be earlier than end time.");
+                e.preventDefault();
+            }
+        });
+    </script>
+}

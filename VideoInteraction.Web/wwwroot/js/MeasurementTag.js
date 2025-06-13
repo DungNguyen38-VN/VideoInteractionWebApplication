@@ -8,14 +8,22 @@ function loadDataTable() {
     dataTable = $('#tblData').DataTable({
         "ajax": { url:'/measurementtag/getall'},
         "columns": [
-            { data: 'displayOrder', "width": "5%" },
+
             { data: 'measureTagName', "width": "15%" },
             { data: 'tagDescription', "width": "10%" },
-            //{ data: 'createdTs', "width": "20%" },
-            { data: 'updatedTs', "width": "20%" },
+            { data: 'camera.l1ControlId', "width": "10%" },
             { data: 'camera.name', "width": "10%" },
+            //{
+            //    data: 'showStringParam.name',
+            //    width: "10%",
+            //    render: function (data, type, row) {
+            //        return data ? data : ''; //  return data
+            //    }
+            //},
+            { data: 'displayOrder', "width": "10%" },
             { data: 'measurementUnit.name', "width": "10%" },
             { data: 'measurementPrefix.name', "width": "10%" },
+            { data: 'decimalPoint', "width": "10%" },
             {
                 data: 'id',
                 "render": function (data) {
@@ -24,7 +32,8 @@ function loadDataTable() {
                      <a onClick=Delete('/measurementtag/delete/${data}') class="btn btn-danger mx-2"> <i class="bi bi-trash-fill"></i> Delete</a>
                     </div>`
                 },
-                "width": "25%"
+               "width": "25%"
+                 
             }
         ]
     });

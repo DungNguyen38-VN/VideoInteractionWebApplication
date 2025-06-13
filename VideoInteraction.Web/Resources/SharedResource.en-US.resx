@@ -240,4 +240,163 @@
   <data name="Register" xml:space="preserve">
     <value>Register</value>
   </data>
+  <data name="OPCTagControlWindowList" xml:space="preserve">
+    <value>OPC Tag Control Window List</value>
+  </data>
+  <data name="L1ControlId" xml:space="preserve">
+    <value>L1 Control Id</value>
+  </data>
+  <data name="ControlWindowTag" xml:space="preserve">
+    <value>Control Window Tag</value>
+  </data>
+  <data name="DecimalPoint" xml:space="preserve">
+    <value>Decimal Point</value>
+  </data>
+  <data name="L1ControlWindowId" xml:space="preserve">
+    <value>L1 Control Window ID</value>
+  </data>
+  <data name="ShowStringParam" xml:space="preserve">
+    <value>Show String Param</value>
+  </data>
+  <data name="IsDisplay" xml:space="preserve">
+    <value>Is Display</value>
+  </data>
+  <data name="CreateNewShowStringParam" xml:space="preserve">
+    <value>Create Show String Param</value>
+  </data>
+  <data name="ShowStringParamName" xml:space="preserve">
+    <value>Show String Param</value>
+  </data>
+  <data name="IsShow" xml:space="preserve">
+    <value>Is Show</value>
+  </data>
+  <data name="IsActive" xml:space="preserve">
+    <value>Is Active</value>
+  </data>
+  <data name="ShowStringParamList" xml:space="preserve">
+    <value>Show String Param List</value>
+  </data>
+  <data name="DeleteShowStringParam" xml:space="preserve">
+    <value>Delete Show String Param</value>
+  </data>
+  <data name="EditShowStringParam" xml:space="preserve">
+    <value>Edit Show String Param</value>
+  </data>
+  <data name="CreateNewAlarmMessage" xml:space="preserve">
+    <value>Create New Alarm Message</value>
+  </data>
+  <data name="AlarmMessageName" xml:space="preserve">
+    <value>Alarm Message Name</value>
+  </data>
+  <data name="AlarmText" xml:space="preserve">
+    <value>Alarm Text</value>
+  </data>
+  <data name="DeleteAlarmMessage" xml:space="preserve">
+    <value>Delete Alarm Message</value>
+  </data>
+  <data name="EditAlarmMessage" xml:space="preserve">
+    <value>Edit Alarm Message</value>
+  </data>
+  <data name="CameraAlarmTag" xml:space="preserve">
+    <value>Camera Alarm Tag</value>
+  </data>
+  <data name="AlarmMessage" xml:space="preserve">
+    <value>Alarm Message</value>
+  </data>
+  <data name="CameraAlarmTagList" xml:space="preserve">
+    <value>Camera Alarm Tag List</value>
+  </data>
+  <data name="ImportExcel" xml:space="preserve">
+    <value>Import Excel</value>
+  </data>
+  <data name="ImportUpdateExcel" xml:space="preserve">
+    <value>Update Cameral</value>
+  </data>
+  <data name="UpdateTvWallScene" xml:space="preserve">
+    <value>Update TvWall Scene</value>
+  </data>
+  <data name="TvWallSceneList" xml:space="preserve">
+    <value>TvWall Scene List</value>
+  </data>
+  <data name="TvWallScene" xml:space="preserve">
+    <value>TvWall Scene</value>
+  </data>
+  <data name="TvWall" xml:space="preserve">
+    <value>Tv Wall</value>
+  </data>
+  <data name="CameraVideoDownloadList" xml:space="preserve">
+    <value>Camera Video Download List</value>
+  </data>
+  <data name="CameraVideoDownload" xml:space="preserve">
+    <value>Camera Video Download</value>
+  </data>
+  <data name="StartTime" xml:space="preserve">
+    <value>Start Time</value>
+  </data>
+  <data name="EndTime" xml:space="preserve">
+    <value>End Time</value>
+  </data>
+  <data name="CreatedTs" xml:space="preserve">
+    <value>Created Time</value>
+  </data>
+  <data name="FileName" xml:space="preserve">
+    <value>Video Name</value>
+  </data>
+  <data name="OpenVideoDir" xml:space="preserve">
+    <value>Open Video</value>
+  </data>
+  <data name="SelectDlp" xml:space="preserve">
+    <value>Select DLP</value>
+  </data>
+  <data name="All_DLPs" xml:space="preserve">
+    <value>All DLPs</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="TvWallId" xml:space="preserve">
+    <value>TvWallId</value>
+  </data>
+  <data name="SceneId" xml:space="preserve">
+    <value>Scene Id</value>
+  </data>
+  <data name="SceneName" xml:space="preserve">
+    <value>Scene Name</value>
+  </data>
+  <data name="DlpName" xml:space="preserve">
+    <value>Dlp Name</value>
+  </data>
+  <data name="IsCurrent" xml:space="preserve">
+    <value>Is Current</value>
+  </data>
+  <data name="AlarmMessageList" xml:space="preserve">
+    <value>Alarm Message List</value>
+  </data>
+  <data name="DownloadVideo" xml:space="preserve">
+    <value>Download Video</value>
+  </data>
+  <data name="BelongDlpId" xml:space="preserve">
+    <value>Dlp Id</value>
+  </data>
+  <data name="SceneOrder" xml:space="preserve">
+    <value>Scene Order</value>
+  </data>
+  <data name="Active" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="Inactive" xml:space="preserve">
+    <value>Inactive</value>
+  </data>
+  <data name="IsAlarm" xml:space="preserve">
+    <value>Is Alarm</value>
+  </data>
+  <data name="DownloadToLocal" xml:space="preserve">
+    <value>Save Local</value>
+  </data>
+  <data name="TestAlarm" xml:space="preserve">
+    <value>Test Alarm</value>
+  </data>
+  <data name="IsActiveLinkage" xml:space="preserve">
+    <value>Is Active Linkage</value>
+  </data>
 </root>

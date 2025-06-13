@@ -5,16 +5,18 @@
 <div class="hero-section d-flex justify-content-center align-items-center text-center text-white">
     <div class="overlay"></div>
     <div class="content">
-        <h1 class="display-3">Welcome to Video Interaction</h1>
+        <h1 class="display-3">Welcome to Video Linkage System</h1>
+        <h1 class="display-3">欢迎使用Primetals视频联动系统</h1>
         <p class="lead">Experience seamless video communication with our cutting-edge platform.</p>
-        @if (User.IsInRole(SD.Role_Customer) || User.IsInRole(SD.Role_Admin))
+        <p class="lead">体验我们尖端平台带来的无缝视频通信.</p>
+       @*  @if (User.IsInRole(SD.Role_Customer) || User.IsInRole(SD.Role_Admin))
         {
            
         }
         else
         {
             <a href="/Identity/Account/Login" class="btn btn-lg btn-primary mt-4">Login</a>
-        }
+        } *@
 
     </div>
 </div>

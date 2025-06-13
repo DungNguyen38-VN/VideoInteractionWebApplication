@@ -13,6 +13,9 @@ function loadDataTable() {
             { data: 'createdTs', "width": "20%" },
             { data: 'updatedTs', "width": "20%" },
             { data: 'camera.name', "width": "15%" },
+
+            
+
             {
                 data: 'id',
                 "render": function (data) {
@@ -22,6 +25,7 @@ function loadDataTable() {
                     </div>`
                 },
                 "width": "25%"
+                
             }
         ]
     });
